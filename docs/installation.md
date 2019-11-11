@@ -41,14 +41,16 @@ page](../ppa) to add it to your sources, then continue reading here.
 The usual way to transform a normal installation into an LTSP server is to run:
 
 ```shell
-apt install ltsp dnsmasq nfs-kernel-server openssh-server squashfs-tools ethtool net-tools epoptes
+apt install ltsp ltsp-binaries dnsmasq nfs-kernel-server openssh-server squashfs-tools ethtool net-tools epoptes
 gpasswd -a administrator epoptes
 ```
 
 Replace _administrator_ with the administrator username.
+If you're not using the PPA, also replace `ltsp-binaries` with `ipxe`.
 Description of the aforementioned packages:
  * ltsp: contains the LTSP code, it's common for both LTSP servers
    and LTSP clients.
+ * ltsp-binaries: contains iPXE and memtest binaries.
  * dnsmasq: provides TFTP and optionally (proxy)DHCP and DNS services.
    Possible alternatives are isc-dhcp-server and tftpd-hpa, but only dnsmasq
    can do proxyDHCP, so it's the recommended default.
