@@ -57,6 +57,7 @@ The `ltsp initrd` command does a quick syntax check by running
 The following parameters are currently defined; an example is given in
 each case.
 
+
 **AUTOLOGIN=**_"user01"_<br/>
 **RELOGIN=**_0|1_<br/>
 **GDM3\_CONF=**_"WaylandEnable=false"_<br/>
@@ -89,7 +90,7 @@ configuration.
 and they are used by `ltsp ipxe` to generate the iPXE menu.
 They control the default menu item, the additional kernel parameters and
 the menu timeout for each client. MENU_TIMEOUT can also be defined globally
-under [clients].
+under [common].
 
 **DNS_SERVER=**_"8.8.8.8 208.67.222.222"_
 : Specify the DNS servers for the clients.
