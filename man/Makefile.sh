@@ -27,6 +27,6 @@ nav_order: $i
 ---
 
 EOF
-        cat "../../ltsp/docs/$mp"
+        cat "../../ltsp/docs/$mp" | sed 's/*\*--/**-\\-/g'
     } >"$applet.md"
 done

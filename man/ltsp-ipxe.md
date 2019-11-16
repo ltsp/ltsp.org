@@ -20,7 +20,7 @@ otherwise, some of them are automatically found in the ipxe/memtest86+ packages.
 ## OPTIONS
 See the **ltsp(8)** man page for _ltsp-options_.
 
-**-b**, **--binaries=**_[0|1|""]_
+**-b**, **-\-binaries=**_[0|1|""]_
 : Reinstall the iPXE binaries in TFTP even if they already exist.
 Defaults to "", which means "only install the missing ones".
 Note that the --overwrite flag doesn't affect the binaries, they're only

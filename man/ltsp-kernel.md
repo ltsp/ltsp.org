@@ -21,7 +21,7 @@ The targets will always be named vmlinuz and initrd.img to simplify ltsp.ipxe.
 ## OPTIONS
 See the **ltsp(8)** man page for _ltsp-options_.
 
-**-k**, **--kernel-initrd=**_glob-regex_
+**-k**, **-\-kernel-initrd=**_glob-regex_
 : Specify a kernel glob and an initrd regex to locate them inside the _image_;
 try to autodetect if undefined. See the EXAMPLES section below.
 

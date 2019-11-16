@@ -19,27 +19,27 @@ only image and then use SSHFS or NFS to mount /home/username from the server.
 ## OPTIONS
 See the **ltsp(8)** man page for _ltsp-options_.
 
-**-b**, **--backup=**_0|1_
+**-b**, **-\-backup=**_0|1_
 : Backup /srv/ltsp/images/_image_.img to _image_.img.old. Defaults to 1.
 
-**-c**, **--cleanup**=_0|1_
+**-c**, **-\-cleanup**=_0|1_
 : Create a writeable overlay on top of the image source and temporarily
 remove user accounts and sensitive data before calling mksquashfs.
 Defaults to 1.
 
-**-i**, **--ionice=**_cmdline_
+**-i**, **-\-ionice=**_cmdline_
 : Set a prefix command to run mksquashfs with a lower priority, or specify
 "" to disable it completely. Defaults to `nice ionice -c3`.
 
-**-k**, **--kernel-initrd=**_glob-regex_
+**-k**, **-\-kernel-initrd=**_glob-regex_
 : Pass this parameter to the `ltsp kernel` call after the squashfs creation.
 See ltsp-kernel(8) for more information.
 
-**-m**, **--mksquashfs-params=**_"params"_
+**-m**, **-\-mksquashfs-params=**_"params"_
 : Pass _$params_ to the mksquashfs call unquoted; so _params_ shouldn't
 contain spaces. See mksquashfs(1) for more information.
 
-**-r**, **--revert**[=_0|1_]
+**-r**, **-\-revert**[=_0|1_]
 : Move /srv/ltsp/images/_image_.img.old to _image_.img and call
 `ltsp kernel image`. Useful when the clients won't boot with the new image.
 
