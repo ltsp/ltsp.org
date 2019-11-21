@@ -8,7 +8,7 @@ parent: Advanced topics
 In some cases though, sysadmins might need isc-dhcp-server. The following template dhcpd.conf works out of the box for dual NIC LTSP setups:
 
 ```shell
-# This file is part of LTSP, https://ltsp.github.io
+# This file is part of LTSP, https://ltsp.org
 # Copyright 2019 the LTSP team, see AUTHORS
 # SPDX-License-Identifier: GPL-3.0-or-later
 

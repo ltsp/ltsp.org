@@ -19,7 +19,7 @@ apt update
 To install the repository in Debian-based distributions, run as root:
 
 ```shell
-wget https://ltsp.github.io/misc/ltsp-ubuntu-proposed-bionic.list -O /etc/apt/sources.list.d/ltsp-ubuntu-proposed-bionic.list
-wget https://ltsp.github.io/misc/ltsp_ubuntu_ppa.gpg -O /etc/apt/trusted.gpg.d/ltsp_ubuntu_ppa.gpg
+wget https://ltsp.org/misc/ltsp-ubuntu-proposed-bionic.list -O /etc/apt/sources.list.d/ltsp-ubuntu-proposed-bionic.list
+wget https://ltsp.org/misc/ltsp_ubuntu_ppa.gpg -O /etc/apt/trusted.gpg.d/ltsp_ubuntu_ppa.gpg
 apt update
 ```

@@ -85,12 +85,12 @@ ltsp dnsmasq --proxy-dhcp=0
 ```
 
 You can read about more `ltsp dnsmasq` options, like --dns or --dns-servers, in
-its [man page](https://ltsp.github.io/man/ltsp-dnsmasq).
+its [man page](https://ltsp.org/man/ltsp-dnsmasq).
 
 ## Maintaining a client image
 
 LTSP supports three methods to maintain a client image. They are documented in
-the [ltsp image](https://ltsp.github.io/man/ltsp-image)
+the [ltsp image](https://ltsp.org/man/ltsp-image)
 man page. You can use either one or all of them. In short, they are:
  * Chrootless (previously pnp): use the server root (/) as the template for
    the clients. It's the easiest method if it suits your needs, as you maintain
@@ -98,7 +98,7 @@ man page. You can use either one or all of them. In short, they are:
  * Raw virtual machine image: graphically maintain e.g. a VirtualBox VM.
  * Chroot: maintain a chroot directory using console commands. Note that the
    LTSP5 `ltsp-build-client` command is no longer supported, see the
-   [man page](https://ltsp.github.io/man/ltsp-image).
+   [man page](https://ltsp.org/man/ltsp-image).
 
 In the virtual machine and chroot cases, you're supposed to install the ltsp
 package to the image, by adding the LTSP PPA and running
@@ -138,7 +138,7 @@ ltsp ipxe
 ```
 
 Note that the initial
-[ltsp ipxe](https://ltsp.github.io/man/ltsp-ipxe)
+[ltsp ipxe](https://ltsp.org/man/ltsp-ipxe)
 call requires Internet connectivity to fetch the iPXE binaries from github,
 as currently they're not provided by distributions.
 In LTSP5, syslinux was used, but iPXE replaced it as it's much more powerful.
@@ -151,7 +151,7 @@ To configure the LTSP server to serve the images or chroots over NFS, run:
 ltsp nfs
 ```
 
-For finetuning options, see the [ltsp nfs man page](https://ltsp.github.io/man/ltsp-nfs)
+For finetuning options, see the [ltsp nfs man page](https://ltsp.org/man/ltsp-nfs)
 
 ## Generate ltsp.img
 
@@ -166,10 +166,10 @@ This compresses /usr/share/ltsp, /etc/ltsp, /etc/{passwd,group} and the
 server public SSH keys into /srv/tftp/ltsp/ltsp.img,
 which is transferred as an "additional initrd" to the clients when they boot.
 You can read about its benefits in its
-[man page](https://ltsp.github.io/man/ltsp-initrd),
+[man page](https://ltsp.org/man/ltsp-initrd),
 for now keep in mind that you need to run `ltsp initrd` after each LTSP
 package update, or when you add new users, or if you create or modify
-[/etc/ltsp/ltsp.conf](https://ltsp.github.io/man/ltsp.conf),
+[/etc/ltsp/ltsp.conf](https://ltsp.org/man/ltsp.conf),
 which replaced the LTSP 5 "lts.conf".
 
 ## Questions

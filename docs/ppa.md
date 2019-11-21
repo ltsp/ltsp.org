@@ -18,8 +18,8 @@ apt update
 
 To install the repository in Debian-based distributions, run as root:
 ```shell
-wget https://ltsp.github.io/misc/ltsp-ubuntu-ppa-bionic.list -O /etc/apt/sources.list.d/ltsp-ubuntu-ppa-bionic.list
-wget https://ltsp.github.io/misc/ltsp_ubuntu_ppa.gpg -O /etc/apt/trusted.gpg.d/ltsp_ubuntu_ppa.gpg
+wget https://ltsp.org/misc/ltsp-ubuntu-ppa-bionic.list -O /etc/apt/sources.list.d/ltsp-ubuntu-ppa-bionic.list
+wget https://ltsp.org/misc/ltsp_ubuntu_ppa.gpg -O /etc/apt/trusted.gpg.d/ltsp_ubuntu_ppa.gpg
 apt update
 ```
 Note that normally Debian users should not be using PPAs. LTSP is an exception, as it only contains shell code (and a bit of python), it is interpreted (Architecture:all, no compiled binaries involved), and the .debs are tested on Debian too.
