@@ -58,7 +58,7 @@ Description of the aforementioned packages:
  * openssh-server: allows clients to authenticate and access /home via SSHFS.
  * ethtool, net-tools: allow disabling Ethernet flow control, to improve
    LAN speed when the server is gigabit and some clients are 100 Mbps.
- * [epoptes](https://epoptes.github.io): optional; allows client monitoring and
+ * [epoptes](https://epoptes.org/): optional; allows client monitoring and
    remote control; the gpasswd command allows the sysadmin to run epoptes.
 
 All those packages can also be displayed with `apt show ltsp | grep ^Suggests`.
