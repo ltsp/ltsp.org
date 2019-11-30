@@ -21,8 +21,8 @@ i.e. from Ubuntu 16.04 and Debian Jessie and onward.
 
 In case you end up choosing
 [Ubuntu MATE 18.04](http://cdimage.ubuntu.com/ubuntu-mate/releases/18.04/release/ubuntu-mate-18.04.3-desktop-amd64.iso),
-[@alkisg](https://github.com/alkisg) recommends running the following commands
-after installation, to avoid some problematic packages:
+[@alkisg](https://github.com/alkisg) suggests running the following commands
+after installation, to save some RAM for older clients:
 
 ```shell
 apt purge --yes --auto-remove indicator-application mate-hud snapd
