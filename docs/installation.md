@@ -19,13 +19,20 @@ receive the most testing.
 Any .deb-based distribution that uses systemd should work;
 i.e. from Ubuntu 16.04 and Debian Jessie and onward.
 
-In case you end up choosing
-[Ubuntu MATE 18.04](http://cdimage.ubuntu.com/ubuntu-mate/releases/18.04/release/ubuntu-mate-18.04.3-desktop-amd64.iso),
-[@alkisg](https://github.com/alkisg) suggests running the following commands
-after installation, to save some RAM for older clients:
+### Optional
 
+#### The following packages come with some distributions and can be removed to increase performance:
+  - *indicator-application* - Removing this package makes the system tray more simplistic by disabling features such as system tray icons that change their appearance, for example, a CPU monitor system tray widget displaying the CPU load. This package has been known to hog the CPU and removing it has no effect on the functionality of the applications that use the system tray.
+  - *mate-hud* - Not necessary unless you want a hud. Has also been reported to be unstable.
+  - *snapd* - Allows installing [snap packages](snapcraft.io). This package slows boot times slightly and can use a lot of RAM. If you are planning to use snap packages be wary of possible pitfalls, for example, snap packages if installed in a certain way become accessible only by the user that installed the package.
+
+To remove all of these packages run:
 ```shell
 apt purge --yes --auto-remove indicator-application mate-hud snapd
+```
+
+#### It is also recommended to install synaptic, a versatile package manager:
+```shell
 apt install --yes synaptic
 ```
 
