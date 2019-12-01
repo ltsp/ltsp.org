@@ -130,18 +130,15 @@ to your image and want to export its updated version.
 
 ## Configuring iPXE
 
-After you create your initial image, run the following command to generate
-an iPXE menu and fetch the iPXE binaries:
+After you create your initial image, or if you ever create additional images, run the following command to generate an iPXE menu and copy the iPXE binaries in TFTP:
 
 ```shell
 ltsp ipxe
 ```
 
-Note that the initial
-[ltsp ipxe](https://ltsp.org/man/ltsp-ipxe)
-call requires Internet connectivity to fetch the iPXE binaries from github,
-as currently they're not provided by distributions.
 In LTSP5, syslinux was used, but iPXE replaced it as it's much more powerful.
+You can read more about it in the [ltsp ipxe man page](https://ltsp.org/man/ltsp-ipxe).
+
 
 ## NFS server configuration
 
@@ -151,12 +148,11 @@ To configure the LTSP server to serve the images or chroots over NFS, run:
 ltsp nfs
 ```
 
-For finetuning options, see the [ltsp nfs man page](https://ltsp.org/man/ltsp-nfs)
+For finetuning options, see the [ltsp nfs man page](https://ltsp.org/man/ltsp-nfs).
 
 ## Generate ltsp.img
 
-A new functionality that wasn't there in LTSP5 is provided by the following
-command:
+A new procedure that wasn't there in LTSP5 is provided by the following command:
 
 ```shell
 ltsp initrd
