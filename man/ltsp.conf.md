@@ -57,6 +57,15 @@ The `ltsp initrd` command does a quick syntax check by running
 The following parameters are currently defined; an example is given in
 each case.
 
+**ADD_IMAGE_EXCLUDES=**_"/etc/ltsp/add-image.excludes"_<br/>
+**OMIT_IMAGE_EXCLUDES=**_"home/*"_<br/>
+: Add or omit items to the `ltsp image` exclusion list.
+Some files and directories shouldn't be included in the generated image.
+The initial list is defined in /usr/share/ltsp/server/image/image.excludes.
+It can be completely overriden by creating /etc/ltsp/image.excludes.
+ADD_IMAGE_EXCLUDES and OMIT_IMAGE_EXCLUDES can finetune the list by adding
+or removing lines to it. They can either be filenames or multiline text.
+
 **AUTOLOGIN=**_"user01"_<br/>
 **RELOGIN=**_0|1_<br/>
 **GDM3\_CONF=**_"WaylandEnable=false"_<br/>
@@ -76,6 +85,15 @@ configuration.
 **CRONTAB_x=**_"30 15 * * *  poweroff"_
 : Add a line in crontab. The example powers off the clients at 15:30.
 
+**CUPS_SERVER=**_"$SERVER"_
+: Set the CUPS server in the client /etc/cups/client.conf. Defaults to $SERVER.
+You're supposed to also enable printer sharing on the server by running
+`cupsctl _share_printers=1` or `system-config-printer` or by visiting
+[http://localhost:631](http://localhost:631).
+Then all printers can be managed on the LTSP server.
+Other possible values are CUPS_SERVER="localhost", when a printer is connected
+to a client, or CUPS_SERVER="ignore", to skip CUPS server handling.
+
 **DEBUG_LOG=**_0|1_
 : Write warnings and error messages to /run/ltsp/debug.log. Defaults to 0.
 
@@ -88,7 +106,7 @@ configuration.
 : These parameters can be defined under [mac:address] sections in ltsp.conf,
 and they are used by `ltsp ipxe` to generate the iPXE menu.
 They control the default menu item, the additional kernel parameters and
-the menu timeout for each client. MENU_TIMEOUT can also be defined globally
+the menu timeout for each client. They can also be defined globally
 under [server].
 
 **DNS_SERVER=**_"8.8.8.8 208.67.222.222"_
