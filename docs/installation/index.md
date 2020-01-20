@@ -41,7 +41,7 @@ page](../ppa) to add it to your sources, then continue reading here.
 The usual way to transform a normal installation into an LTSP server is to run:
 
 ```shell
-apt install ltsp ltsp-binaries dnsmasq nfs-kernel-server openssh-server squashfs-tools ethtool net-tools epoptes
+apt install --install-recommends ltsp ltsp-binaries dnsmasq nfs-kernel-server openssh-server squashfs-tools ethtool net-tools epoptes
 gpasswd -a administrator epoptes
 ```
 
