@@ -22,7 +22,7 @@ Any .deb-based distribution that uses systemd should work;
 i.e. from Ubuntu 16.04 and Debian Jessie and onward.
 
 In case you end up choosing
-[Ubuntu MATE 18.04](http://cdimage.ubuntu.com/ubuntu-mate/releases/18.04/release/ubuntu-mate-18.04.3-desktop-amd64.iso),
+[Ubuntu MATE 20.04](http://cdimage.ubuntu.com/ubuntu-mate/releases/20.04/release/ubuntu-mate-20.04-desktop-amd64.iso),
 [@alkisg](https://github.com/alkisg) suggests running the following commands
 after installation, to save some RAM for older clients:
 
@@ -34,9 +34,9 @@ apt install --yes synaptic
 ## Adding the LTSP PPA
 
 The LTSP PPA is where stable upstream LTSP releases are published.
-Currently it's mandatory, as distributions still have the older LTSP5,
-later on it will be optional but recommended to have. Follow the [ppa
-page](../ppa) to add it to your sources, then continue reading here.
+It's mandatory for distributions before 2020 that have the older LTSP5,
+and optional but recommended to have in newer distributions.
+Follow the [ppa page](../ppa) to add it to your sources, then continue reading here.
 
 ## Installing LTSP server packages
 
@@ -164,10 +164,10 @@ This compresses /usr/share/ltsp, /etc/ltsp, /etc/{passwd,group} and the
 server public SSH keys into /srv/tftp/ltsp/ltsp.img,
 which is transferred as an "additional initrd" to the clients when they boot.
 You can read about its benefits in its
-[man page](https://ltsp.org/man/ltsp-initrd),
+[man page](../../man/ltsp-initrd),
 for now keep in mind that you need to run `ltsp initrd` after each LTSP
 package update, or when you add new users, or if you create or modify
-[/etc/ltsp/ltsp.conf](https://ltsp.org/man/ltsp.conf),
+[/etc/ltsp/ltsp.conf](../../man/ltsp.conf),
 which replaced the LTSP 5 "lts.conf".
 
 ## Questions

@@ -13,7 +13,7 @@ To enable netconsole:
 * Then add this parameter to the client kernel cmdline: `netconsole=@${ip}/enp0s3,@${srv}/`<br>
 If you're not using iPXE, manually replace `${ip}` and `${srv}` with the IPs of the client and the server.
 * You may also add `loglevel=5` to see more messages; the default is 4, and the valid values are 0-8.
-* If you use loglevel, you may also need `INIT_COMMAND_01="rm -f /etc/sysctl.d/10-console-messages.conf"` in lts.conf, otherwise that file resets the `/proc/sys/kernel/printk` contents to `4 4 1 7`.
+* If you use loglevel, you may also need `POST_INIT_NETCONSOLE="rm -f /etc/sysctl.d/10-console-messages.conf"` in ltsp.conf, otherwise that file resets the `/proc/sys/kernel/printk` contents to `4 4 1 7`.
 
 When you want to inspect the client messages, run one of the following commands on the server:
 * `socat UDP-LISTEN:6666,fork -` (safer)

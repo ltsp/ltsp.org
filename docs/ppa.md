@@ -5,9 +5,11 @@ nav_order: 3
 
 # Personal Package Archive
 
-Stable upstream LTSP releases are offered in .deb package format in the [LTSP PPA](https://launchpad.net/~ltsp/+archive/ubuntu/ppa). They should work in all .deb-based distributions that use systemd, i.e. from Debian Jessie and Ubuntu 16.04 and upwards.
+Stable upstream LTSP releases are offered in .deb package format in the [LTSP PPA](https://launchpad.net/~ltsp/+archive/ubuntu/ppa). They should work in all .deb-based distributions that use systemd, i.e. from Debian Jessie 8 and Ubuntu Xenial 16.04 and upwards.
 
-Currently, LTSP19+ packages aren't available in distributions, so this PPA is the only source for LTSP packages. But even when distributions do get LTSP, it's still recommended to have this PPA in your sources: when clients netboot, `ltsp init` dynamically configures a lot of other packages, like systemd, network-manager, display managers, netplan etc. Some times normal distribution updates of said packages break the netboot process, and urgent LTSP updates are required to fix it.
+The LTSP PPA is mandatory for distributions before 2020 that have the older LTSP5, and optional but recommended to have in newer distributions.
+When clients netboot, `ltsp init` dynamically configures a lot of other packages, like systemd, network-manager, display managers, netplan etc.
+Some times normal distribution updates of said packages break the netboot process, and urgent LTSP updates provided by the PPA are required to fix it.
 
 To install the repository in Ubuntu-based distributions, run as root:
 

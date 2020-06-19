@@ -8,11 +8,9 @@ nav_order: 1
 
 Basic installation instructions for netbooting Raspberry Pi clients from a Raspbian chroot on an LTSP server.
 
-> 📝 **Note**: LTSP authors do not have any Raspberry Pi LTSP installations, so they're only able to work on Raspberry Pi LTSP support when funding is found. Currently, a kind sponsor has partially funded code development and is successfully netbooting 200 Raspberries; but the process hasn't been fully automated nor the documentation proof-read. This means that currently you need to contact [alkisg](https://github.com/alkisg) for remote assistance for Raspberry Pi installations.
-
 ## Prerequisites
 
-The LTSP server should already be configured by following the [installation page](https://ltsp.org/docs/installation). If booting x86 clients is also required, do that part first as it's easier.
+The LTSP server should already be configured by following the [installation page](../). If booting x86 clients is also required, do that part first as it's easier.
 
 ## Client configuration
 
@@ -80,7 +78,7 @@ exportfs -ra
 
 You may replace `*` with an IP to only allow access to a single client, or you may delete the /etc/exports.d/ltsp-raspbian.exports file when you're done, so that there are no security issues.
 
-Now boot a single client, [add the LTSP PPA](https://ltsp.org/docs/ppa) to your sources, and install the client-side packages:
+Now boot a single client, [add the LTSP PPA](../../ppa/) to your sources, and install the client-side packages:
 
 ```shell
 apt install --install-recommends ltsp epoptes-client
