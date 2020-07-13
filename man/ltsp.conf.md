@@ -209,7 +209,7 @@ line only shows/allows a01 and b01 to login to pc01:
 : Select this LTSP image to boot Raspberry Pis from.
 This symlinks all $BASE_DIR/$RPI_IMAGE/boot/* files directly under $TFTP_DIR
 when `ltsp kernel $RPI_IMAGE` is called.
-See the [Raspberry Pi documentation page](https://ltsp.org/docs/installation/raspbian/)
+See the [Raspberry Pi documentation page](https://ltsp.org/docs/raspberrypi)
 for more information.
 
 **SEARCH_DOMAIN=**_"ioa.sch.gr"_
