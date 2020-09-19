@@ -48,24 +48,39 @@ layout: table_wrappers
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-      <h3>Navigation</h3>
-      {% include nav.html %}
-      <h3>Upstream resources</h3>
-      <nav role="navigation" aria-label="Upstream resources">
-        <ul class="nav-list">
-          <li class="nav-list-item"><a href="https://github.com/ltsp/ltsp" class="nav-list-link">Github page</a>
-          <li class="nav-list-item"><a href="https://github.com/ltsp/ltsp/issues" class="nav-list-link">Bug tracker</a>
-          <li class="nav-list-item"><a href="http://ts.sch.gr/repo/irc" class="nav-list-link">IRC channel</a>
-        </ul>
-      </nav>
-      <h3>Community resources</h3>
-      <nav role="navigation" aria-label="Community resources">
-        <ul class="nav-list">
-          <li class="nav-list-item"><a href="https://github.com/ltsp/community/issues" class="nav-list-link">Discussions</a>
-          <li class="nav-list-item"><a href="https://github.com/ltsp/community/wiki" class="nav-list-link">Wiki</a>
-          <li class="nav-list-item"><a href="https://github.com/ltsp/ltsp5/wiki" class="nav-list-link">Old LTSP5 wiki/resources</a>
-        </ul>
-      </nav>
+      {% if site.just_the_docs.collections %}
+        {% assign collections_size = site.just_the_docs.collections | size %}
+        {% for collection_entry in site.just_the_docs.collections %}
+          {% assign collection_key = collection_entry[0] %}
+          {% assign collection_value = collection_entry[1] %}
+          {% assign collection = site[collection_key] %}
+          {% if collection_value.nav_exclude != true %}
+            {% if collections_size > 1 %}
+              <div class="nav-category">{{ collection_value.name }}</div>
+            {% endif %}
+            {% include nav.html pages=collection %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <h3>Navigation</h3>
+        {% include nav.html pages=site.html_pages %}
+        <h3>Upstream resources</h3>
+        <nav role="navigation" aria-label="Upstream resources">
+          <ul class="nav-list">
+            <li class="nav-list-item"><a href="https://github.com/ltsp/ltsp" class="nav-list-link">Github page</a>
+            <li class="nav-list-item"><a href="https://github.com/ltsp/ltsp/issues" class="nav-list-link">Bug tracker</a>
+            <li class="nav-list-item"><a href="http://ts.sch.gr/repo/irc" class="nav-list-link">IRC channel</a>
+          </ul>
+        </nav>
+        <h3>Community resources</h3>
+        <nav role="navigation" aria-label="Community resources">
+          <ul class="nav-list">
+            <li class="nav-list-item"><a href="https://github.com/ltsp/community/issues" class="nav-list-link">Discussions</a>
+            <li class="nav-list-item"><a href="https://github.com/ltsp/community/wiki" class="nav-list-link">Wiki</a>
+            <li class="nav-list-item"><a href="https://github.com/ltsp/ltsp5/wiki" class="nav-list-link">Old LTSP5 wiki/resources</a>
+          </ul>
+        </nav>
+      {% endif %}
     </nav>
     <footer class="site-footer">
       Jekyll theme: <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>
@@ -118,7 +133,7 @@ layout: table_wrappers
       {% endunless %}
       <div id="main-content" class="main-content" role="main">
         {% if site.heading_anchors != false %}
-          {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" %}
+          {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" anchorAttrs="aria-labelledby=\"%html_id%\"" %}
         {% else %}
           {{ content }}
         {% endif %}
@@ -161,7 +176,7 @@ layout: table_wrappers
                   site.gh_edit_view_mode
                 %}
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="{{ site.gh_edit_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}/{{ page.path }}" id="edit-this-page">{{ site.gh_edit_link_text }}</a>
+                    <a href="{{ site.gh_edit_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}{% if site.gh_edit_source %}/{{ site.gh_edit_source }}{% endif %}/{{ page.path }}" id="edit-this-page">{{ site.gh_edit_link_text }}</a>
                   </p>
                 {% endif %}
               </div>
