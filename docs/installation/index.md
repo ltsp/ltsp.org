@@ -22,7 +22,7 @@ Any .deb-based distribution that uses systemd should work;
 i.e. from Ubuntu 16.04 and Debian Jessie and onward.
 
 In case you end up choosing
-[Ubuntu MATE 20.04](http://cdimage.ubuntu.com/ubuntu-mate/releases/20.04/release/ubuntu-mate-20.04-desktop-amd64.iso),
+[Ubuntu MATE 20.04](http://cdimage.ubuntu.com/ubuntu-mate/releases/20.04/release/ubuntu-mate-20.04.1-desktop-amd64.iso),
 [@alkisg](https://github.com/alkisg) suggests running the following commands
 after installation, to save some RAM for older clients:
 
