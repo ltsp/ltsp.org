@@ -105,7 +105,7 @@ man page. You can use either one or all of them. In short, they are:
 
 In the virtual machine and chroot cases, you're supposed to install the ltsp
 package to the image, by adding the LTSP PPA and running
-`apt install ltsp epoptes-client`, without specifying any other services.
+`apt install --install-recommends ltsp epoptes-client`, without specifying any other services.
 When the image is ready, to export it in _squashfs_ format and make it
 available to the clients over NFS, run the following commands.
 
