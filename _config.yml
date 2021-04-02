@@ -26,7 +26,7 @@ aux_links:
     - "//github.com/ltsp/ltsp"
 
 # Footer content appears at the bottom of every page's main content
-footer_content: "Copyright &copy; 2000-2020 the <a href=\"https://github.com/ltsp/ltsp/graphs/contributors\">LTSP developers</a>"
+footer_content: "Copyright &copy; 2000-2021 the <a href=\"https://github.com/ltsp/ltsp/graphs/contributors\">LTSP developers</a>"
 
 # Color scheme currently only supports "dark" or nil (default)
 color_scheme: nil

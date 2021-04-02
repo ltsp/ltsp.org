@@ -4,7 +4,7 @@ parent: Advanced topics
 
 # ISC DHCP server
 
-[Dnsmasq](https://github.com/ltsp/ltsp/blob/master/docs/ltsp-dnsmasq.8.md) is the recommended default for LTSP, as it's the only one that supports the proxyDHCP protocol.
+[Dnsmasq](https://ltsp.org/man/ltsp-dnsmasq/) is the recommended default for LTSP, as it's the only one that supports the proxyDHCP protocol.
 In some cases though, sysadmins might need isc-dhcp-server. The following template dhcpd.conf works out of the box for dual NIC LTSP setups:
 
 ```shell
