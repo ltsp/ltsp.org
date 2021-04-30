@@ -88,24 +88,25 @@ ltsp dnsmasq --proxy-dhcp=0
 ```
 
 You can read about more `ltsp dnsmasq` options, like --dns or --dns-servers, in
-its [man page](https://ltsp.org/man/ltsp-dnsmasq).
+its [man page](../../man/ltsp-dnsmasq).
 
 ## Maintaining a client image
 
 LTSP supports three methods to maintain a client image. They are documented in
-the [ltsp image](https://ltsp.org/man/ltsp-image)
+the [ltsp image](../../man/ltsp-image)
 man page. You can use either one or all of them. In short, they are:
  * Chrootless (previously pnp): use the server root (/) as the template for
    the clients. It's the easiest method if it suits your needs, as you maintain
    only one operating system, not two (server and image).
  * Raw virtual machine image: graphically maintain e.g. a VirtualBox VM.
- * Chroot: maintain a chroot directory using console commands. Note that the
-   LTSP5 `ltsp-build-client` command is no longer supported, see the
-   [man page](https://ltsp.org/man/ltsp-image).
+ * Chroot: manually maintain a chroot directory using console commands.
 
 In the virtual machine and chroot cases, you're supposed to install the ltsp
 package to the image, by adding the LTSP PPA and running
 `apt install --install-recommends ltsp epoptes-client`, without specifying any other services.
+In the chrootless and virtual machine cases, if you're using separate
+partitions for some directories like /boot or /var, see the `ltsp image`
+man page [EXAMPLES section](../../man/ltsp-image/#examples) for how to include them.
 When the image is ready, to export it in _squashfs_ format and make it
 available to the clients over NFS, run the following commands.
 
@@ -140,7 +141,7 @@ ltsp ipxe
 ```
 
 In LTSP5, syslinux was used, but iPXE replaced it as it's much more powerful.
-You can read more about it in the [ltsp ipxe man page](https://ltsp.org/man/ltsp-ipxe).
+You can read more about it in the [ltsp ipxe man page](../../man/ltsp-ipxe).
 
 
 ## NFS server configuration
@@ -151,7 +152,7 @@ To configure the LTSP server to serve the images or chroots over NFS, run:
 ltsp nfs
 ```
 
-For finetuning options, see the [ltsp nfs man page](https://ltsp.org/man/ltsp-nfs).
+For finetuning options, see the [ltsp nfs man page](../../man/ltsp-nfs).
 
 ## Generate ltsp.img
 
