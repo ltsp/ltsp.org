@@ -12,4 +12,4 @@ Read the following pages in order to setup LTSP:
 3. [Personal package archive](ppa)
 4. [Netboot clients](netboot-clients)
 
-For additional security like disabling the iPXE shell, you may also read the [security wiki page](https://github.com/ltsp/community/wiki/security).
+For additional security like disabling the iPXE shell, you may also read the [security wiki page](https://github.com/ltsp/ltsp/wiki/security).

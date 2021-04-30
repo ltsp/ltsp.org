@@ -99,7 +99,7 @@ man page. You can use either one or all of them. In short, they are:
    the clients. It's the easiest method if it suits your needs, as you maintain
    only one operating system, not two (server and image).
  * Raw virtual machine image: graphically maintain e.g. a VirtualBox VM.
- * Chroot: manually maintain a chroot directory using console commands.
+ * Chroot: manually maintain a [chroot directory](https://github.com/ltsp/ltsp/wiki/chroots) using console commands.
 
 In the virtual machine and chroot cases, you're supposed to install the ltsp
 package to the image, by adding the LTSP PPA and running
