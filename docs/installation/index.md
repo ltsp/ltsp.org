@@ -175,4 +175,4 @@ which replaced the LTSP 5 "lts.conf".
 ## Questions
 
 Questions? Start a [discussion](https://github.com/ltsp/ltsp/discussions)
-or come to [IRC live chat](http://ts.sch.gr/repo/irc).
+or come to the [online chat room](../advanced/chat-room).

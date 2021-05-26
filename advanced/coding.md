@@ -15,7 +15,7 @@ Since shell doesn't have something like PEP8, let's apply whatever makes sense f
 TODO: heredocs <<\- use tabs, and also see: https://www.kernel.org/doc/html/v4.10/process/coding-style.html#indentation.
 
 Other remarks:
-* Don't use periods for single sentence comments or commit messages. Do use periods for multiple sentences. Start with a capital letter. It's like chatting on IRC.
+* Don't use periods for single sentence comments or commit messages. Do use periods for multiple sentences. Start with a capital letter, like in online chat rooms.
 * Don't use quotes for numeric constants, e.g. `NAT=0`.
 * Use quotes for strings, e.g. `HOSTNAME="pc01"`.
 * Prefer "=" over "-eq" when a variable might not be numeric even by mistake, e.g. `if [ "$NAT" = 0 ]`.
