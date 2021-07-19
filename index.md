@@ -7,7 +7,7 @@ nav_order: 1
 
 **Linux Terminal Server Project** helps in netbooting LAN clients from a single template installation that resides in a virtual machine image or a chroot on the LTSP server, or the server root (/, chrootless). This way maintaining tens or hundreds of diskless clients is as easy as maintaining a single PC.
 
-<a href="images/ltsp-ipxe.png"><img src="images/ltsp-ipxe-thumb.png" align="right"></a>LTSP has been [redesigned and rewritten from scratch in 2019](https://github.com/ltsp/ltsp/discussions/2684) by [alkisg](https://github.com/alkisg) in order to support new technologies like systemd, updated desktop environments, Wayland, UEFI etc. Only the new version is actively developed, while the old one is now called LTSP5 and is in minimal maintenance mode.
+<a href="images/ltsp-ipxe.png"><img src="images/ltsp-ipxe-thumb.png" align="right"></a>LTSP has been [redesigned and rewritten from scratch in 2019](https://github.com/ltsp/ltsp/discussions/268) by [alkisg](https://github.com/alkisg) in order to support new technologies like systemd, updated desktop environments, Wayland, UEFI etc. Only the new version is actively developed, while the old one is now called LTSP5 and is in minimal maintenance mode.
 
 LTSP automatically configures and uses the following tools:
 - [iPXE](https://packages.debian.org/stable/ipxe): network boot loader that shows the initial client boot menu and loads the kernel/initrd.

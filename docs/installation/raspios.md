@@ -14,11 +14,12 @@ The LTSP server should already be configured by following the [installation page
 
 ## Client configuration
 
-This method has been tested with Raspbery Pi 2, 3B+ and 4.
+The client configuration is officially documented [here](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/net_tutorial.md). In short:
 
  - To netboot Pi 2, format an SD card with the fat file system and put only bootcode.bin in it. This file can be found in /boot/bootcode.bin inside your Raspberry Pi OS image.
+ - For Pi 3B, boot from an SD card, run `echo program_usb_boot_mode=1 | sudo tee -a /boot/config.txt` and reboot.
  - Pi 3B+ supports netbooting out of the box.
- - Pi 4 shipped without netbooting code, so it currently needs an eeprom update. I used `/lib/firmware/raspberrypi/bootloader/beta/pieeprom-2020-01-09.bin` and I followed the instructions from `/lib/firmware/raspberrypi/bootloader/raspberry_pi4_network_boot_beta.md`.
+ - For Pi 4 and Pi 400, boot from a fully updated SD card to get the latest firmware, then run `sudo raspi-config` and select `Advanced Options > Boot Order > Network Boot`.
 
 ## Chroot preparation
 
