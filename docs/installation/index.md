@@ -140,6 +140,8 @@ After you create your initial image, or if you ever create additional images, ru
 ltsp ipxe
 ```
 
+If defining or changing parameters `KERNEL_PARAMETERS`, `DEFAULT_IMAGE`, `MENU_TIMEOUT` in ltsp.conf, you must execute `ltsp ipxe` to make the changes effective.
+
 In LTSP5, syslinux was used, but iPXE replaced it as it's much more powerful.
 You can read more about it in the [ltsp ipxe man page](../../man/ltsp-ipxe).
 
