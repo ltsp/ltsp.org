@@ -107,7 +107,8 @@ to a client, or CUPS_SERVER="ignore", to skip CUPS server handling.
 and they are used by `ltsp ipxe` to generate the iPXE menu.
 They control the default menu item, the additional kernel parameters and
 the menu timeout for each client. They can also be defined globally
-under [server].
+under [server]. When using MENU_TIMEOUT="-1" which hides the menu, DEFAULT_IMAGE 
+must be defined.
 
 **DNS_SERVER=**_"8.8.8.8 208.67.222.222"_
 : Specify the DNS servers for the clients.
