@@ -155,6 +155,14 @@ for the default. Setting MASK_SESSION_SERVICES in ltsp.conf adds to that list.
 Space separated list. See /usr/share/ltsp/client/init/56-mask-services.sh
 for the default. Setting MASK_SYSTEM_SERVICES in ltsp.conf adds to that list.
 
+**MULTISEAT=**_0|1_<br>
+**UDEV_SEAT_n_x=**_"*/usb?/?-[2,4,6,8,10,12,14,16,18]/*"_
+: MULTISEAT=1 tries to autodetect if an LTSP client has two graphics cards
+and to automatically split them along with the USB ports into two seats.
+Optional lines like `UDEV_SEAT_1_SOUND="*/sound/card1*"` can be used to
+finetune the udev rules that will be generated and placed in a file named
+/etc/udev/rules.d/72-ltsp-seats.rules.
+
 **NAT=**_0|1_
 : Only use this under the [server] section. Normally, `ltsp service`
 runs when the server boots and detects if a server IP is 192.168.67.1,
@@ -204,6 +212,11 @@ more of those regular expressions. For more information, read
 pc01, pc02 etc, and your users a01, a02, b01, b02 etc, then the following
 line only shows/allows a01 and b01 to login to pc01:
 `PWMERGE_SUR=".*%{HOSTNAME#pc}"`
+
+**REMOTEAPPS=**_"users-admin mate-about-me"_
+: Register the specified applications as remoteapps, so that they're executed
+on the LTSP server via `ssh -X` instead of on the clients. For more
+information, see **ltsp-remoteapps(8)**.
 
 **RPI_IMAGE=**_"raspios"_
 : Select this LTSP image to boot Raspberry Pis from.
@@ -270,20 +283,6 @@ INCLUDE=nvidia
 POST_INIT_LN_XORG="ln -sf ../ltsp/xorg-nvidia.conf /etc/X11/xorg.conf"
 ```
 
-To implement multiseat, where an LTSP client might have 2 or more seats,
-with separate monitors, keyboard and mice, the following section can
-be INCLUDEd. The "1" number maps the rule to "seat-1", while the rest
-of the parameter name ("GRAPHICS" etc) is ignored. You can check which
-hardware was assigned to which seat with `loginctl seat-status seat0`.
-
-
-```shell
-[multiseat]
-UDEV_SEAT_1_GRAPHICS="*/pci*/*/0000:01:00.0*"
-UDEV_SEAT_1_SOUND="*/sound/card1*"
-UDEV_SEAT_1_EVEN_USB_PORTS="*/usb?/?-[2,4,6,8,10,12,14,16,18]/*"
-```
-
 Since ltsp.conf is transformed into a shell script and sections into
 functions, it's possible to directly include code or to call sections
 at POST_APPLET_x hooks.
@@ -297,5 +296,5 @@ POST_INIT_SET_ROOT_HASH="section_set_root_hash"
 
 # This is the hash of "qwer1234"; cat /etc/shadow to see your hash.
 [set_root_hash]
-sed 's|^root:[^:]*:|root:$6$bKP3Tahd$a06Zq1j.0eKswsZwmM7Ga76tKNCnueSC.6UhpZ4AFbduHqWA8nA5V/8pLHYFC4SrWdyaDGCgHeApMRNb7mwTq0:|' -i /etc/shadow
+sed 's|^root:[^:]*:|root:$6$VRfFL349App5$BfxBbLE.tYInJfeqyGTv2lbk6KOza3L2AMpQz7bMuCdb3ZsJacl9Nra7F/Zm7WZJbnK5kvK74Ik9WO2qGietM0:|' -i /etc/shadow
 ```
