@@ -1,0 +1,4 @@
+mkdocs-minify-plugin
+mkdocs-material
+mkdocs-redirects
+mkdocs-with-pdf

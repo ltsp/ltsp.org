@@ -1,0 +1,85 @@
+copyright: Copyright © 2000-2022 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a>
+dev_addr: 0.0.0.0:7101
+edit_uri: tree/main/docs
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/extra.js
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+      slugify: !!python/name:pymdownx.slugs.uslugify
+      title: On this page
+plugins:
+  - minify:
+      minify_html: false
+  - redirects:
+      redirect_maps:
+        test.md: index.md
+  - search
+  - with-pdf:
+      author: A pdf export of https://ltsp.org
+      copyright: Copyright © 2000-2022 the LTSP developers
+      cover_title: LTSP
+      cover_subtitle: Linux Terminal Server Project
+      enabled_if_env: ENABLE_PDF_EXPORT
+      output_path: ltsp.pdf
+repo_url: https://github.com/ltsp/ltsp
+site_name: Linux Terminal Server Project
+site_url: https://ltsp.org
+strict: false
+theme:
+  favicon: favicon.ico
+  features:
+    - navigation.indexes
+    - navigation.instant
+  language: en
+  logo: logo-icon.png
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+nav:
+  - About: index.md
+  - Documentation:
+    - docs/index.md
+    - Preparation: docs/preparation.md
+    - Installation:
+      - docs/installation/index.md
+      - docs/installation/raspios.md
+    - docs/ppa.md
+    - docs/netboot-clients.md
+  - Man pages:
+    - man/index.md
+    - man/ltsp.md
+    - man/ltsp.conf.md
+    - man/ltsp-dnsmasq.md
+    - man/ltsp-image.md
+    - man/ltsp-info.md
+    - man/ltsp-initrd.md
+    - man/ltsp-ipxe.md
+    - man/ltsp-kernel.md
+    - man/ltsp-nfs.md
+    - man/ltsp-remoteapps.md
+  - Advanced topics:
+    - advanced/index.md
+    - advanced/chat-room.md
+    - advanced/coding.md
+    - advanced/isc-dhcp-server.md
+    - advanced/netconsole.md
+    - advanced/proposed-ppa.md
+    - advanced/specs.md
+    - advanced/versioning.md
+  - resources.md
