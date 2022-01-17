@@ -10,6 +10,10 @@ markdown_extensions:
   - attr_list
   - def_list
   - pymdownx.superfences
+  - tables
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true
   - toc:
@@ -31,10 +35,12 @@ plugins:
       enabled_if_env: ENABLE_PDF_EXPORT
       output_path: ltsp.pdf
 repo_url: https://github.com/ltsp/ltsp
+site_description: LTSP helps in netbooting LAN clients from a single template installation that resides in a virtual machine image or a chroot on the LTSP server, or the server root (/, chrootless). This way maintaining tens or hundreds of diskless clients is as easy as maintaining a single PC.
 site_name: Linux Terminal Server Project
 site_url: https://ltsp.org
 strict: false
 theme:
+  custom_dir: overrides
   favicon: favicon.ico
   features:
     - navigation.indexes
@@ -43,14 +49,17 @@ theme:
   logo: logo-icon.png
   name: material
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+  titles_only: true
 nav:
   - About: index.md
   - Documentation:

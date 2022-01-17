@@ -3,7 +3,6 @@
 body.vscode-body {
   background-color: var(--md-code-bg-color);
   color: var(--md-code-fg-color);
-  font-size-: 110%;
 }
 
 .vscode-body pre, .vscode-body pre code {
@@ -86,8 +85,12 @@ https://github.com/squidfunk/mkdocs-material/issues/3437#issuecomment-1008354954
   vertical-align: middle;
 }
 
-.md-typeset__table {
+.md-typeset .md-typeset__table {
   display: flex;
+}
+
+.md-typeset .md-typeset__table tr:nth-child(even) {
+  background-color: #eee;
 }
 
 .md-typeset table:not([class]), table {
