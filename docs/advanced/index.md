@@ -11,5 +11,6 @@ Documentation contributors are most welcome, please contact us in the [online ch
 - [ISC DHCP server](isc-dhcp-server.md)
 - [Netconsole](netconsole.md)
 - [Proposed PPA](proposed-ppa.md)
+- [PXELinux](pxelinux.md)
 - [Specifications](specs.md)
 - [Versioning](versioning.md)

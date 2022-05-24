@@ -1,0 +1,48 @@
+MENU TITLE PXELinux boot menu
+UI isolinux/menu.c32
+TIMEOUT 50
+F1 pxelinux.cfg/default
+
+LABEL -
+	MENU LABEL Boot an image from the network in LTSP mode:
+
+LABEL x86_32
+	MENU LABEL Ubuntu ^18.04 MATE (32 bit)
+	TEXT HELP
+		Boots /srv/ltsp/images/x86_32.img via NFS.
+	ENDTEXT
+	MENU INDENT 2
+	KERNEL x86_32/vmlinuz
+	APPEND root=/dev/nfs nfsroot=/srv/ltsp ltsp.image=images/x86_32.img loop.max_part=9
+	INITRD ltsp.img,x86_32/initrd.img
+	IPAPPEND 3
+
+LABEL x86_64
+	MENU DEFAULT
+	MENU LABEL Ubuntu ^22.04 MATE (64 bit)
+	TEXT HELP
+		Boots /srv/ltsp/images/x86_64.img via NFS.
+	ENDTEXT
+	MENU INDENT 2
+	KERNEL x86_64/vmlinuz
+	APPEND root=/dev/nfs nfsroot=/srv/ltsp ltsp.image=images/x86_64.img loop.max_part=9
+	INITRD ltsp.img,x86_64/initrd.img
+	IPAPPEND 3
+
+MENU SEPARATOR
+
+LABEL -
+	MENU LABEL Other options:
+	MENU DISABLE
+
+LABEL memtest86+
+	MENU LABEL ^Memory test
+	MENU INDENT 2
+	KERNEL memtest.0
+
+LABEL hd00
+	MENU LABEL Boot from the first local ^disk
+	MENU INDENT 2
+	LOCALBOOT 0
+
+MENU END
