@@ -27,13 +27,13 @@ apt install pxelinux syslinux
 ln -s /usr/lib/PXELINUX/pxelinux.0 pxelinux.0
 ln -s /usr/lib/syslinux/modules/bios isolinux
 mkdir -p pxelinux.cfg
-wget https://ltsp.org/advanced/pxelinux.txt -O pxelinux.cfg/default
+wget https://ltsp.org/guides/pxelinux.txt -O pxelinux.cfg/default
 ```
 
 The next step is to configure dnsmasq to point one or more clients to use PXELinux instead of iPXE. Create `/etc/dnsmasq.d/local.conf` with the following content:
 
 ```text
-# Documentation=https://ltsp.org/advanced/pxelinux/
+# Documentation=https://ltsp.org/guides/pxelinux/
 dhcp-mac=set:pxelinux,52:54:61:67:00:01
 pxe-service=tag:pxelinux,X86PC,"pxelinux.0",ltsp/pxelinux.0
 dhcp-boot=tag:pxelinux,ltsp/pxelinux.0

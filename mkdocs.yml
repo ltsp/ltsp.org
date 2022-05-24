@@ -82,13 +82,13 @@ nav:
     - man/ltsp-kernel.md
     - man/ltsp-nfs.md
     - man/ltsp-remoteapps.md
-  - Advanced topics:
-    - advanced/index.md
-    - advanced/chat-room.md
-    - advanced/coding.md
-    - advanced/isc-dhcp-server.md
-    - advanced/netconsole.md
-    - advanced/proposed-ppa.md
-    - advanced/specs.md
-    - advanced/versioning.md
+  - Guides:
+    - guides/index.md
+    - guides/chat-room.md
+    - guides/coding.md
+    - guides/isc-dhcp-server.md
+    - guides/netconsole.md
+    - guides/proposed-ppa.md
+    - guides/specs.md
+    - guides/versioning.md
   - resources.md

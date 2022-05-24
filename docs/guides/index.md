@@ -1,4 +1,4 @@
-# Advanced topics
+# Guides
 
 Search the following table of contents for the topic you're interested in.
 

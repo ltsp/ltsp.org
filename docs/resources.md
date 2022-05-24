@@ -8,7 +8,7 @@ Other resources related to LTSP:
 
 - [Github page](https://github.com/ltsp/ltsp)
 - [Bug tracker](https://github.com/ltsp/ltsp/issues)
-- [Chat room](advanced/chat-room.md)
+- [Chat room](guides/chat-room.md)
 
 ## Community resources
 

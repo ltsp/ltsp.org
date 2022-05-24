@@ -1,7 +1,6 @@
 # Installation
 
 !!! Note "Note for LTSP5 users"
-
     It's possible to install the new LTSP in parallel with LTSP5, with the exception of the /etc/dnsmasq.d/ltsp-server-dnsmasq.conf file, which will need to be deleted before generating a new one with `ltsp dnsmasq`.
 
 All of the terminal commands in the wiki should be run as root, which means
@@ -171,4 +170,4 @@ which replaced the LTSP 5 "lts.conf".
 ## Questions
 
 Questions? Start a [discussion](https://github.com/ltsp/ltsp/discussions)
-or come to the [online chat room](../../advanced/chat-room.md).
+or come to the [online chat room](../../guides/chat-room.md).
