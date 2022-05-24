@@ -87,8 +87,10 @@ nav:
     - guides/chat-room.md
     - guides/coding.md
     - guides/isc-dhcp-server.md
+    - guides/markdown.md
     - guides/netconsole.md
     - guides/proposed-ppa.md
+    - guides/pxelinux.md
     - guides/specs.md
     - guides/versioning.md
   - support.md
