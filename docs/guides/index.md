@@ -29,5 +29,6 @@ us in the [online chat room](chat-room) for details.
 - [Netconsole](netconsole.md)
 - [Proposed PPA](proposed-ppa.md)
 - [PXELinux](pxelinux.md)
+- [Snap](snap.md)
 - [Specifications](specs.md)
 - [Versioning](versioning.md)

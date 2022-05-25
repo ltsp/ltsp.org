@@ -92,5 +92,6 @@ nav:
     - guides/proposed-ppa.md
     - guides/pxelinux.md
     - guides/specs.md
+    - guides/snap.md
     - guides/versioning.md
   - support.md
