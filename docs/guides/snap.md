@@ -3,9 +3,8 @@
 There's some controversy regarding [snap](https://snapcraft.io/), Ubuntu's new
 packaging format. LTSP does its best to support it, but occasionally some
 issues arise with it that can't be solved from the LTSP side, for example
-[wasting RAM in live sessions](https://bugs.launchpad.net/1867415) or [not
-working with NFS
-home](https://bugs.launchpad.net/ubuntu/+source/snapd/+bug/1662552).
+[wasting RAM in live sessions](https://bugs.launchpad.net/bugs/1867415)
+or [not working with NFS home](https://bugs.launchpad.net/bugs/1662552).
 
 If you decide to remove snap, you may open a terminal, type `sudo -i` to become
 root, and then copy/paste all the following code:
@@ -26,7 +25,7 @@ Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 1001' >/etc/apt/preferences.d/60mozillateam-ppa
     # If you need more locales e.g. firefox-locale-el add them in this line
     apt-get install --yes firefox firefox-locale-en
-    # Work around https://bugs.launchpad.net/1967736
+    # Work around https://bugs.launchpad.net/bugs/1967736
     if [ -f /usr/share/mate/applications/firefox.desktop ]; then
         dpkg-divert --package sch-scripts --divert \
             /usr/share/mate/applications/firefox-desktop.diverted \
