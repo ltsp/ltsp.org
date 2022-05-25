@@ -1,6 +1,6 @@
 copyright: Copyright © 2000-2022 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a>
 dev_addr: 0.0.0.0:7101
-edit_uri: tree/main/docs
+edit_uri: https://github.com/ltsp/ltsp.org/blob/main/docs
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
