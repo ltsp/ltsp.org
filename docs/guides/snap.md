@@ -15,8 +15,8 @@ if [ -f /var/lib/snapd/desktop/applications/firefox_firefox.desktop ] &&
     [ ! -L /var/lib/snapd/desktop/applications/firefox_firefox.desktop ]; then
     snapff=1
 fi
-apt-get purge --yes --auto-remove ayatana-indicator-application \
-    indicator-application mate-hud snapd
+packages=$(dpkg -l ayatana-indicator-application indicator-application mate-hud snapd 2>/dev/null | awk '/^ii/ { print $2 }')
+apt-get purge --yes --auto-remove $packages
 if [ "$snapff" = 1 ]; then
     # If firefox snap was installed, replace it with the .deb from the PPA
     add-apt-repository --yes ppa:mozillateam/ppa
