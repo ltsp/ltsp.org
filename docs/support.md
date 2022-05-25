@@ -28,8 +28,16 @@ For LTSP support, the following methods are available:
 - If you're offering commercial LTSP support and want to add your link here,
   contact the LTSP team.
 
+## Bounties
+
+You may offer a bounty for implementing a new feature that you'd like to see in
+LTSP. Just [file an issue](https://github.com/ltsp/ltsp/issues) and mention
+that you're interested in sponsoring its implementation.
+
 ## Donations
 
-- LTSP is [accepting donations via paypal](https://paypal.me/epoptes). You may
-  optionally include your nickname to get free LTSP support in the [chat
-  room](guides/chat-room.md).
+LTSP is [accepting donations via paypal](https://paypal.me/epoptes). You may
+optionally include your nickname to get free LTSP support in the [chat
+room](guides/chat-room.md).
+
+Thank you for supporting LTSP development!
