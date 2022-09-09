@@ -25,7 +25,7 @@ plugins:
       minify_html: false
   - redirects:
       redirect_maps:
-        test.md: index.md
+        advanced/chat-room.md: 'guides/chat-room.md'
   - search
   - with-pdf:
       author: A pdf export of https://ltsp.org
