@@ -1,4 +1,4 @@
-copyright: Copyright © 2000-2022 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a>
+copyright: Copyright © 2000-2023 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a>
 dev_addr: 0.0.0.0:7101
 edit_uri: https://github.com/ltsp/ltsp.org/blob/main/docs
 extra_css:
@@ -29,7 +29,7 @@ plugins:
   - search
   - with-pdf:
       author: A pdf export of https://ltsp.org
-      copyright: Copyright © 2000-2022 the LTSP developers
+      copyright: Copyright © 2000-2023 the LTSP developers
       cover_title: LTSP
       cover_subtitle: Linux Terminal Server Project
       enabled_if_env: ENABLE_PDF_EXPORT
