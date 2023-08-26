@@ -1,0 +1,1528 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LTSP helps in netbooting LAN clients from a single template installation that resides in a virtual machine image or a chroot on the LTSP server, or the server root (/, chrootless). This way maintaining tens or hundreds of diskless clients is as easy as maintaining a single PC.">
+      
+      
+      
+        <link rel="canonical" href="https://ltsp.org/man/ltsp.conf/">
+      
+      
+        <link rel="prev" href="../ltsp/">
+      
+      
+        <link rel="next" href="../ltsp-dnsmasq/">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.4">
+    
+    
+      
+        <title>ltsp.conf - Linux Terminal Server Project</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0e669242.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Linux Terminal Server Project - ltsp.conf" />
+  <meta property="og:description" content="LTSP helps in netbooting LAN clients from a single template installation that resides in a virtual machine image or a chroot on the LTSP server, or the server root (/, chrootless). This way maintaining tens or hundreds of diskless clients is as easy as maintaining a single PC." />
+  <meta property="og:url" content="https://ltsp.org/man/ltsp.conf/" />
+  <meta property="og:image" content="https://ltsp.org/logo-300x158.png" />
+  <meta property="og:image:alt" content="LTSP logo" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="300" />
+  <meta property="og:image:height" content="158" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ltspconf" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Linux Terminal Server Project" class="md-header__button md-logo" aria-label="Linux Terminal Server Project" data-md-component="logo">
+      
+  <img src="../../logo-icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Linux Terminal Server Project
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ltsp.conf
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ltsp/ltsp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Linux Terminal Server Project" class="md-nav__button md-logo" aria-label="Linux Terminal Server Project" data-md-component="logo">
+      
+  <img src="../../logo-icon.png" alt="logo">
+
+    </a>
+    Linux Terminal Server Project
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ltsp/ltsp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../docs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_2">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/preparation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preparation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../docs/installation/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_2_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/installation/raspios/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Raspberry Pi OS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/ppa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Package Archive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/netboot-clients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Netboot clients
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Man pages
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Man pages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ltsp.conf
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ltsp.conf
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    NAME
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    SYNOPSIS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creation" class="md-nav__link">
+    CREATION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    SYNTAX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    PARAMETERS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    EXAMPLES
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-dnsmasq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-dnsmasq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-info
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-initrd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-initrd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-ipxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-ipxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-kernel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-kernel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-nfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-nfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-remoteapps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-remoteapps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_4">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/chat-room/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chat room
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/isc-dhcp-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ISC DHCP server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/netconsole/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Netconsole
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/proposed-ppa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proposed PPA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/pxelinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PXELinux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/specs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Specifications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/snap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    NAME
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    SYNOPSIS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creation" class="md-nav__link">
+    CREATION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    SYNTAX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    PARAMETERS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    EXAMPLES
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="ltspconf">ltsp.conf<a class="headerlink" href="#ltspconf" title="Permanent link">&para;</a></h1>
+<h2 id="name">NAME<a class="headerlink" href="#name" title="Permanent link">&para;</a></h2>
+<p><strong>ltsp.conf</strong> - client configuration file for LTSP</p>
+<h2 id="synopsis">SYNOPSIS<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h2>
+<p>The LTSP client configuration file is placed at <code>/etc/ltsp/ltsp.conf</code> and it
+loosely follows the .ini format. It is able to control various settings of the
+LTSP server and clients. After each ltsp.conf modification, the <code>ltsp initrd</code>
+command needs to be run so that it's included in the additional ltsp.img initrd
+that is sent when the clients boot.</p>
+<h2 id="creation">CREATION<a class="headerlink" href="#creation" title="Permanent link">&para;</a></h2>
+<p>To create an initial ltsp.conf, run the following command:</p>
+<div class="highlight"><pre><span></span><code>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0660</span><span class="w"> </span>-g<span class="w"> </span>sudo<span class="w"> </span>/usr/share/ltsp/common/ltsp/ltsp.conf<span class="w"> </span>/etc/ltsp/ltsp.conf
+</code></pre></div>
+<p>The optional <code>-g sudo</code> parameter allows users in the sudo group to edit
+ltsp.conf with any editor (e.g. gedit) without running sudo.</p>
+<h2 id="syntax">SYNTAX<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h2>
+<p>Open and view the /etc/ltsp/ltsp.conf file that you just created, so that it's
+easier to understand its syntax.</p>
+<p>The configuration file is separated into sections:</p>
+<ul>
+<li>The special [server] section is evaluated only by the ltsp server.</li>
+<li>The special [common] section is evaluated by both the server and ltsp
+  clients.</li>
+<li>In the special [clients] section, parameters for all clients can be defined.
+  Most ltsp.conf parameters should be placed there.</li>
+<li>MAC address, IP address, or hostname sections can be used to apply settings
+  to specific clients. Those support globs, for example [192.168.67.*].</li>
+<li>It's also possible to group parameters into named sections like [crt_monitor]
+  in the example, and reference them from other sections with the INCLUDE=
+  parameter.</li>
+<li>Advanced users may also use [applet/host] sections, for example
+  [initrd-bottom/library*] would be evaluated by the <code>ltsp initrd-bottom</code>
+  applet only for clients that have a hostname that starts with "library".</li>
+</ul>
+<p>The ltsp.conf configuration file is internally transformed into a shell
+script, so all the shell syntax rules apply, except for the sections headers
+which are transformed into functions.</p>
+<p>This means that you must not use spaces around the "=" sign,
+and that you may write comments using the "#" character.</p>
+<p>The <code>ltsp initrd</code> command does a quick syntax check by running
+<code>sh -n /etc/ltsp/ltsp.conf</code> and aborts if it detects syntax errors.</p>
+<h2 id="parameters">PARAMETERS<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<p>The following parameters are currently defined; an example is given in
+each case.</p>
+<dl>
+<dt><strong><a name="ADD_IMAGE_EXCLUDES" href="#ADD_IMAGE_EXCLUDES">ADD_IMAGE_EXCLUDES</a></strong>=<em>"/etc/ltsp/add-image.excludes"</em></dt>
+<dt><strong><a name="OMIT_IMAGE_EXCLUDES" href="#OMIT_IMAGE_EXCLUDES">OMIT_IMAGE_EXCLUDES</a></strong>=<em>"home/*"</em></dt>
+<dd>Add or omit items to the <code>ltsp image</code> exclusion list.
+Some files and directories shouldn't be included in the generated image.
+The initial list is defined in /usr/share/ltsp/server/image/image.excludes.
+It can be completely overridden by creating /etc/ltsp/image.excludes.
+ADD_IMAGE_EXCLUDES and OMIT_IMAGE_EXCLUDES can finetune the list by adding
+or removing lines to it. They can either be filenames or multiline text.</dd>
+<dt><strong><a name="AUTOLOGIN" href="#AUTOLOGIN">AUTOLOGIN</a></strong>=<em>"user01"</em></dt>
+<dt><strong><a name="RELOGIN" href="#RELOGIN">RELOGIN</a></strong>=<em>0|1</em></dt>
+<dt><strong><a name="GDM3_CONF" href="#GDM3_CONF">GDM3_CONF</a></strong>=<em>"WaylandEnable=false"</em></dt>
+<dt><strong><a name="LIGHTDM_CONF" href="#LIGHTDM_CONF">LIGHTDM_CONF</a></strong>=<em>"greeter-hide-users=true"</em></dt>
+<dt><strong><a name="SDDM_CONF" href="#SDDM_CONF">SDDM_CONF</a></strong>=<em>"/etc/ltsp/sddm.conf"</em></dt>
+<dd>Configure the display manager to log in this user automatically.
+If SSHFS is used, the PASSWORDS_x parameter (see below) must also be provided.
+AUTOLOGIN can be a simple username like "user01", or it can be a partial
+regular expression that transforms a hostname to a username.
+For example, AUTOLOGIN="pc/guest" means "automatically log in as guest01 in
+pc01, as guest02 in pc02 etc".
+Setting RELOGIN=0 will make AUTOLOGIN work only once.
+Finally, the *_CONF parameters can be either filenames or direct text, and
+provide a way to write additional content to the generated display manager
+configuration.</dd>
+<dt><strong><a name="CRONTAB_x" href="#CRONTAB_x">CRONTAB_x</a></strong>=<em>"30 15   * * *   root    poweroff"</em></dt>
+<dd>Add a line in crontab. The example powers off the clients at 15:30.</dd>
+<dt><strong><a name="CUPS_SERVER" href="#CUPS_SERVER">CUPS_SERVER</a></strong>=<em>"$SERVER"</em></dt>
+<dd>Set the CUPS server in the client /etc/cups/client.conf. Defaults to $SERVER.
+You're supposed to also enable printer sharing on the server by running
+<code>cupsctl _share_printers=1</code> or <code>system-config-printer</code> or by visiting
+<a href="http://localhost:631">http://localhost:631</a>.
+Then all printers can be managed on the LTSP server.
+Other possible values are CUPS_SERVER="localhost", when a printer is connected
+to a client, or CUPS_SERVER="ignore", to skip CUPS server handling.</dd>
+<dt><strong><a name="DEBUG_LOG" href="#DEBUG_LOG">DEBUG_LOG</a></strong>=<em>0|1</em></dt>
+<dd>Write warnings and error messages to /run/ltsp/debug.log. Defaults to 0.</dd>
+<dt><strong><a name="DEBUG_SHELL" href="#DEBUG_SHELL">DEBUG_SHELL</a></strong>=<em>0|1</em></dt>
+<dd>Launch a debug shell when errors are detected. Defaults to 0.</dd>
+<dt><strong><a name="DEFAULT_IMAGE" href="#DEFAULT_IMAGE">DEFAULT_IMAGE</a></strong>=<em>"x86_64"</em></dt>
+<dt><strong><a name="KERNEL_PARAMETERS" href="#KERNEL_PARAMETERS">KERNEL_PARAMETERS</a></strong>=<em>"nomodeset noapic"</em></dt>
+<dt><strong><a name="MENU_TIMEOUT" href="#MENU_TIMEOUT">MENU_TIMEOUT</a></strong>=<em>"5000"</em></dt>
+<dd>These parameters can be defined under [mac:address] sections in ltsp.conf,
+and they are used by <code>ltsp ipxe</code> to generate the iPXE menu.
+They control the default menu item, the additional kernel parameters and
+the menu timeout for each client. They can also be defined globally
+under [server].</dd>
+<dt><strong><a name="DISABLE_SESSION_SERVICES" href="#DISABLE_SESSION_SERVICES">DISABLE_SESSION_SERVICES</a></strong>=<em>"evolution-addressbook-factory obex"</em></dt>
+<dt><strong><a name="DISABLE_SYSTEM_SERVICES" href="#DISABLE_SYSTEM_SERVICES">DISABLE_SYSTEM_SERVICES</a></strong>=<em>"anydesk teamviewerd"</em></dt>
+<dt><strong><a name="KEEP_SESSION_SERVICES" href="#KEEP_SESSION_SERVICES">KEEP_SESSION_SERVICES</a></strong>=<em>"at-spi-dbus-bus"</em></dt>
+<dt><strong><a name="KEEP_SYSTEM_SERVICES" href="#KEEP_SYSTEM_SERVICES">KEEP_SYSTEM_SERVICES</a></strong>=<em>"apparmor ssh"</em></dt>
+<dt><strong><a name="MASK_SESSION_SERVICES" href="#MASK_SESSION_SERVICES">MASK_SESSION_SERVICES</a></strong>=<em>"gnome-software-service update-notifier"</em></dt>
+<dt><strong><a name="MASK_SYSTEM_SERVICES" href="#MASK_SYSTEM_SERVICES">MASK_SYSTEM_SERVICES</a></strong>=<em>"apt-daily apt-daily-upgrade rsyslog"</em></dt>
+<dd>Space separated lists of services to disable, permit or mask on LTSP clients.
+They mostly correspond to <code>systemctl disable/mask [--user]</code> invocations.
+Setting these ltsp.conf parameters adds or omits items from the default lists
+that are defined in <code>/usr/share/ltsp/client/init/56-services.sh</code>.
+Disabled services can be started on demand by e.g. dbus or socket activation,
+while masked services need to be manually unmasked first.
+Currently, MASK_SESSION_SERVICES also deletes the non-systemd user services
+from /etc/xdg/autostart.</dd>
+<dt><strong><a name="DNS_SERVER" href="#DNS_SERVER">DNS_SERVER</a></strong>=<em>"8.8.8.8 208.67.222.222"</em></dt>
+<dd>Specify the DNS servers for the clients.</dd>
+<dt><strong><a name="FSTAB_x" href="#FSTAB_x">FSTAB_x</a></strong>=<em>"server:/home /home nfs defaults,nolock 0 0"</em></dt>
+<dd>All parameters that start with FSTAB_ are sorted and then their values
+are written to /etc/fstab at the client init phase.</dd>
+<dt><strong><a name="HOSTNAME" href="#HOSTNAME">HOSTNAME</a></strong>=<em>"pc01"</em></dt>
+<dd>Specify the client hostname. Defaults to "ltsp%{IP}".
+HOSTNAME may contain the %{IP} pseudovariable, which is a sequence number
+calculated from the client IP and the subnet mask, or the %{MAC}
+pseudovariable, which is the MAC address without the colons.</dd>
+<dt><strong><a name="HOSTS_x" href="#HOSTS_x">HOSTS_x</a></strong>=<em>"192.168.67.10 nfs-server"</em></dt>
+<dd>All parameters that start with HOSTS_ are sorted and then their values
+are written to /etc/hosts at the client init phase.</dd>
+<dt><strong><a name="IMAGE_TO_RAM" href="#IMAGE_TO_RAM">IMAGE_TO_RAM</a></strong>=<em>0|1</em></dt>
+<dd>Specifying this option under the [clients] section copies the rootfs
+image to RAM during boot. That makes clients less dependent on
+the server, but they must have sufficient memory to fit the image.</dd>
+<dt><strong><a name="INCLUDE" href="#INCLUDE">INCLUDE</a></strong>=<em>"other-section"</em></dt>
+<dd>Include another section in this section.</dd>
+<dt><strong><a name="LOCAL_SWAP" href="#LOCAL_SWAP">LOCAL_SWAP</a></strong>=<em>0|1</em></dt>
+<dd>Activate local swap partitions. Defaults to 1.</dd>
+<dt><strong><a name="MULTISEAT" href="#MULTISEAT">MULTISEAT</a></strong>=<em>0|1</em></dt>
+<dt><strong><a name="UDEV_SEAT_n_x" href="#UDEV_SEAT_n_x">UDEV_SEAT_n_x</a></strong>=<em>"*/usb?/?-[2,4,6,8,10,12,14,16,18]/*"</em></dt>
+<dd>MULTISEAT=1 tries to autodetect if an LTSP client has two graphics cards
+and to automatically split them along with the USB ports into two seats.
+Optional lines like <code>UDEV_SEAT_1_SOUND="*/sound/card1*"</code> can be used to
+finetune the udev rules that will be generated and placed in a file named
+/etc/udev/rules.d/72-ltsp-seats.rules.</dd>
+<dt><strong><a name="NAT" href="#NAT">NAT</a></strong>=<em>0|1</em></dt>
+<dd>Only use this under the [server] section. Normally, <code>ltsp service</code>
+runs when the server boots and detects if a server IP is 192.168.67.1,
+in which case it automatically enables IP forwarding for the clients to
+be able to access the Internet in dual NIC setups. But if there's a chance
+that the IP isn't set yet (e.g. disconnected network cable), setting NAT=1
+enforces that.</dd>
+<dt><strong><a name="OMIT_FUNCTIONS" href="#OMIT_FUNCTIONS">OMIT_FUNCTIONS</a></strong>=<em>"pam_main mask_services_main"</em></dt>
+<dd>A space separated list of function names that should be omitted.
+The functions specified here will not be executed when called.
+This option can be specified in any [section].</dd>
+<dt><strong><a name="PASSWORDS_x" href="#PASSWORDS_x">PASSWORDS_x</a></strong>=<em>"teacher/cXdlcjEyMzQK [a-z][-0-9]*/MTIzNAo= guest[^:]*/"</em></dt>
+<dd>A space separated list of regular expressions that match usernames, followed
+by slash and base64-encoded passwords. At boot, <code>ltsp init</code> writes those
+passwords for the matching users in /etc/shadow, so that then pamltsp can
+pass them to SSH/SSHFS. The end result is that those users are able to
+login either in the console or the display manager by just pressing [Enter]
+at the password prompt.<br />
+Passwords are base64-encoded to prevent over-the-shoulder spying and to
+avoid the need for escaping special characters. To encode a password in
+base64, run <code>base64</code>, type a single password, and then Ctrl+D.<br />
+In the example above, the teacher account will automatically use "qwer1234"
+as the password, the a1-01, b1-02 etc students will use "1234", and the
+guest01 etc accounts will be able to use an empty password without even
+authenticating against the server; in this case, SSHFS can't be used,
+/home should be local or NFS.</dd>
+<dt><strong><a name="POST_APPLET_x" href="#POST_APPLET_x">POST_APPLET_x</a></strong>=<em>"ln -s /etc/ltsp/xorg.conf /etc/X11/xorg.conf"</em></dt>
+<dd>All parameters that start with POST_ and then have an ltsp client applet
+name are sorted and their values are executed after the main function of
+that applet. See the ltsp(8) man page for the available applets.
+The usual place to run client initialization commands that don't need to
+daemonize is POST_INIT_x.</dd>
+<dt><strong><a name="PRE_APPLET_x" href="#PRE_APPLET_x">PRE_APPLET_x</a></strong>=<em>"debug_shell"</em></dt>
+<dd>All parameters that start with PRE_ and then have an ltsp client applet
+name are sorted and their values are executed before the main function of
+that applet.</dd>
+<dt><strong>PWMERGE_SUR</strong>=, <strong>PWMERGE_SGR</strong>=, <strong>PWMERGE_DGR</strong>=, <strong>PWMERGE_DUR</strong>=</dt>
+<dd>Normally, all the server users are listed on the client login screens
+and are permitted to log in. To exclude some of them, define one or
+more of those regular expressions. For more information, read
+/usr/share/ltsp/client/login/pwmerge. For example, if you name your clients
+pc01, pc02 etc, and your users a01, a02, b01, b02 etc, then the following
+line only shows/allows a01 and b01 to login to pc01:
+<code>PWMERGE_SUR=".*%{HOSTNAME#pc}"</code></dd>
+<dt><strong><a name="REMOTEAPPS" href="#REMOTEAPPS">REMOTEAPPS</a></strong>=<em>"users-admin mate-about-me"</em></dt>
+<dd>Register the specified applications as remoteapps, so that they're executed
+on the LTSP server via <code>ssh -X</code> instead of on the clients. For more
+information, see <strong>ltsp-remoteapps(8)</strong>.</dd>
+<dt><strong><a name="RPI_IMAGE" href="#RPI_IMAGE">RPI_IMAGE</a></strong>=<em>"raspios"</em></dt>
+<dd>Select this LTSP image to boot Raspberry Pis from.
+This symlinks all $BASE_DIR/$RPI_IMAGE/boot/* files directly under $TFTP_DIR
+when <code>ltsp kernel $RPI_IMAGE</code> is called.
+See the <a href="https://ltsp.org/docs/installation/raspios">Raspberry Pi OS documentation page</a>
+for more information.</dd>
+<dt><strong><a name="SEARCH_DOMAIN" href="#SEARCH_DOMAIN">SEARCH_DOMAIN</a></strong>=<em>"ioa.sch.gr"</em></dt>
+<dd>A search domain to add to resolv.conf and to /etc/hosts. Usually provided
+by DHCP.</dd>
+<dt><strong><a name="SERVER" href="#SERVER">SERVER</a></strong>=<em>"192.168.67.1"</em></dt>
+<dd>The LTSP server is usually autodetected; it can be manually specified
+if there's need for it.</dd>
+<dt><strong><a name="X_DRIVER" href="#X_DRIVER">X_DRIVER</a></strong>=<em>"vesa"</em></dt>
+<dt><strong><a name="X_HORIZSYNC" href="#X_HORIZSYNC">X_HORIZSYNC</a></strong>=<em>"28.0-87.0"</em></dt>
+<dt><strong><a name="X_MODELINE" href="#X_MODELINE">X_MODELINE</a></strong>=<em>'"1024x768_85.00"   94.50  1024 1096 1200 1376  768 771 775 809 -hsync +vsync'</em></dt>
+<dt><strong><a name="X_MODES" href="#X_MODES">X_MODES</a></strong>=<em>'"1024x768" "800x600" "640x480"'</em></dt>
+<dt><strong><a name="X_PREFERREDMODE" href="#X_PREFERREDMODE">X_PREFERREDMODE</a></strong>=<em>"1024x768"</em></dt>
+<dt><strong><a name="X_VERTREFRESH" href="#X_VERTREFRESH">X_VERTREFRESH</a></strong>=<em>"43.0-87.0"</em></dt>
+<dt><strong><a name="X_VIRTUAL" href="#X_VIRTUAL">X_VIRTUAL</a></strong>=<em>"800 600"</em></dt>
+<dd>If any of these parameters are set, the /usr/share/ltsp/client/init/xorg.conf
+template is installed to /etc/X11/xorg.conf, while applying the parameters.
+Read that template and consult xorg.conf(5) for more information.
+The most widely supported method to set a default resolution is X_MODES.
+If more parameters are required, create a custom xorg.conf as described in
+the EXAMPLES section.</dd>
+</dl>
+<h2 id="examples">EXAMPLES<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<p>To specify a hostname and a user to autologin in a client:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>3c:07:71:a2:02:e3<span class="o">]</span>
+<span class="nv">HOSTNAME</span><span class="o">=</span>pc01
+<span class="nv">AUTOLOGIN</span><span class="o">=</span>user01
+<span class="nv">PASSWORDS_PC01</span><span class="o">=</span><span class="s2">&quot;user01/cGFzczAxCg==&quot;</span>
+</code></pre></div>
+<p>The password above is "pass01" in base64 encoding. To calculate it, the
+<code>base64</code> command was run in a terminal:</p>
+<div class="highlight"><pre><span></span><code>base64
+pass01
+&lt;press<span class="w"> </span>Ctrl+D<span class="w"> </span>at<span class="w"> </span>this<span class="w"> </span>point&gt;
+<span class="nv">cGFzczAxCg</span><span class="o">==</span>
+</code></pre></div>
+<p>If some clients need a custom xorg.conf file, create it in e.g.
+<code>/etc/ltsp/xorg-nvidia.conf</code>, and put the following in ltsp.conf
+to dynamically symlink it for those clients at boot:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>pc01<span class="o">]</span>
+<span class="nv">INCLUDE</span><span class="o">=</span>nvidia
+
+<span class="o">[</span>nvidia<span class="o">]</span>
+<span class="nv">POST_INIT_LN_XORG</span><span class="o">=</span><span class="s2">&quot;ln -sf ../ltsp/xorg-nvidia.conf /etc/X11/xorg.conf&quot;</span>
+</code></pre></div>
+<p>Since ltsp.conf is transformed into a shell script and sections into
+functions, it's possible to directly include code or to call sections
+at POST_APPLET_x hooks.</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>clients<span class="o">]</span>
+<span class="c1"># Allow local root logins by setting a password hash for the root user.</span>
+<span class="c1"># The hash contains $, making it hard to escape in POST_INIT_x=&quot;sed ...&quot;.</span>
+<span class="c1"># So put sed in a section and call it at POST_INIT like this:</span>
+<span class="nv">POST_INIT_SET_ROOT_HASH</span><span class="o">=</span><span class="s2">&quot;section_set_root_hash&quot;</span>
+
+<span class="c1"># This is the hash of &quot;qwer1234&quot;; cat /etc/shadow to see your hash.</span>
+<span class="o">[</span>set_root_hash<span class="o">]</span>
+sed<span class="w"> </span><span class="s1">&#39;s|^root:[^:]*:|root:$6$VRfFL349App5$BfxBbLE.tYInJfeqyGTv2lbk6KOza3L2AMpQz7bMuCdb3ZsJacl9Nra7F/Zm7WZJbnK5kvK74Ik9WO2qGietM0:|&#39;</span><span class="w"> </span>-i<span class="w"> </span>/etc/shadow
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2000-2023 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.instant"], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.78eede0e.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

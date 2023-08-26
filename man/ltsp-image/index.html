@@ -1,0 +1,1467 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LTSP helps in netbooting LAN clients from a single template installation that resides in a virtual machine image or a chroot on the LTSP server, or the server root (/, chrootless). This way maintaining tens or hundreds of diskless clients is as easy as maintaining a single PC.">
+      
+      
+      
+        <link rel="canonical" href="https://ltsp.org/man/ltsp-image/">
+      
+      
+        <link rel="prev" href="../ltsp-dnsmasq/">
+      
+      
+        <link rel="next" href="../ltsp-info/">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.4">
+    
+    
+      
+        <title>ltsp-image - Linux Terminal Server Project</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0e669242.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Linux Terminal Server Project - ltsp-image" />
+  <meta property="og:description" content="LTSP helps in netbooting LAN clients from a single template installation that resides in a virtual machine image or a chroot on the LTSP server, or the server root (/, chrootless). This way maintaining tens or hundreds of diskless clients is as easy as maintaining a single PC." />
+  <meta property="og:url" content="https://ltsp.org/man/ltsp-image/" />
+  <meta property="og:image" content="https://ltsp.org/logo-300x158.png" />
+  <meta property="og:image:alt" content="LTSP logo" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="300" />
+  <meta property="og:image:height" content="158" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ltsp-image" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Linux Terminal Server Project" class="md-header__button md-logo" aria-label="Linux Terminal Server Project" data-md-component="logo">
+      
+  <img src="../../logo-icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Linux Terminal Server Project
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ltsp-image
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ltsp/ltsp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Linux Terminal Server Project" class="md-nav__button md-logo" aria-label="Linux Terminal Server Project" data-md-component="logo">
+      
+  <img src="../../logo-icon.png" alt="logo">
+
+    </a>
+    Linux Terminal Server Project
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ltsp/ltsp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../docs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_2">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/preparation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preparation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../docs/installation/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_2_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/installation/raspios/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Raspberry Pi OS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/ppa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Package Archive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/netboot-clients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Netboot clients
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Man pages
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Man pages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp.conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp.conf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-dnsmasq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-dnsmasq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ltsp-image
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-image
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    NAME
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    SYNOPSIS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    DESCRIPTION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    OPTIONS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-types" class="md-nav__link">
+    IMAGE TYPES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chrootless" class="md-nav__link">
+    CHROOTLESS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vm-images" class="md-nav__link">
+    VM IMAGES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chroots" class="md-nav__link">
+    CHROOTS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    EXAMPLES
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-info
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-initrd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-initrd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-ipxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-ipxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-kernel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-kernel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-nfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-nfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltsp-remoteapps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ltsp-remoteapps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_4">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/chat-room/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chat room
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/isc-dhcp-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ISC DHCP server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/netconsole/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Netconsole
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/proposed-ppa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proposed PPA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/pxelinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PXELinux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/specs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Specifications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/snap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    NAME
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    SYNOPSIS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    DESCRIPTION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    OPTIONS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-types" class="md-nav__link">
+    IMAGE TYPES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chrootless" class="md-nav__link">
+    CHROOTLESS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vm-images" class="md-nav__link">
+    VM IMAGES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chroots" class="md-nav__link">
+    CHROOTS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    EXAMPLES
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="ltsp-image">ltsp-image<a class="headerlink" href="#ltsp-image" title="Permanent link">&para;</a></h1>
+<h2 id="name">NAME<a class="headerlink" href="#name" title="Permanent link">&para;</a></h2>
+<p><strong>ltsp image</strong> - generate a squashfs image from an image source</p>
+<h2 id="synopsis">SYNOPSIS<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h2>
+<p><strong>ltsp</strong> [<em>ltsp-options</em>] <strong>image</strong> [<strong>-b</strong> <em>backup</em>] [<strong>-c</strong> <em>cleanup</em>] [<strong>-i</strong> <em>ionice</em>] [<strong>-k</strong> <em>kernel-initrd</em>] [<strong>-m</strong> <em>mksquashfs-params</em>] [<strong>-r</strong> <em>revert</em>] [<em>image</em>] ...</p>
+<h2 id="description">DESCRIPTION<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>Compress a virtual machine image or chroot directory into a squashfs image,
+to be used as the network root filesystem of LTSP clients. It's used in
+similar fashion to live CDs, i.e. all clients will boot from this single read
+only image and then use SSHFS or NFS to mount /home/username from the server.</p>
+<h2 id="options">OPTIONS<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
+<p>See the <strong>ltsp(8)</strong> man page for <em>ltsp-options</em>.</p>
+<dl>
+<dt><strong>-b</strong>, <strong>--backup</strong>=<em>0|1</em></dt>
+<dd>Backup /srv/ltsp/images/<em>image</em>.img to <em>image</em>.img.old. Defaults to 1.</dd>
+<dt><strong>-c</strong>, <strong>--cleanup</strong>=<em>0|1</em></dt>
+<dd>Create a writeable overlay on top of the image source and temporarily
+remove user accounts and sensitive data before calling mksquashfs.
+Defaults to 1.</dd>
+<dt><strong>-i</strong>, <strong>--ionice</strong>=<em>cmdline</em></dt>
+<dd>Set a prefix command to run mksquashfs with a lower priority, or specify
+"" to disable it completely. Defaults to <code>nice ionice -c3</code>.</dd>
+<dt><strong>-k</strong>, <strong>--kernel-initrd</strong>=<em>glob-regex</em></dt>
+<dd>Pass this parameter to the <code>ltsp kernel</code> call after the squashfs creation.
+See ltsp-kernel(8) for more information.</dd>
+<dt><strong>-m</strong>, <strong>--mksquashfs-params</strong>=<em>"params"</em></dt>
+<dd>Pass <em>$params</em> to the mksquashfs call unquoted; so <em>params</em> shouldn't
+contain spaces. See mksquashfs(1) for more information.</dd>
+<dt><strong>-r</strong>, <strong>--revert</strong>[=<em>0|1</em>]</dt>
+<dd>Move /srv/ltsp/images/<em>image</em>.img.old to <em>image</em>.img and call
+<code>ltsp kernel image</code>. Useful when the clients won't boot with the new image.</dd>
+</dl>
+<h2 id="image-types">IMAGE TYPES<a class="headerlink" href="#image-types" title="Permanent link">&para;</a></h2>
+<p>There are three "image" types in LTSP, in the following locations. The
+/srv/ltsp path can be configured using <code>ltsp --base-dir=</code>:</p>
+<dl>
+<dt><strong>/srv/ltsp/<em>img_name</em>.img</strong></dt>
+<dd>Source images are placed directly under /srv/ltsp and usually are symlinks
+to virtual machine raw disk files. They're only used by <code>ltsp image</code>.</dd>
+<dt><strong>/srv/ltsp/<em>img_name</em></strong></dt>
+<dd>Chroot directories can be used both as sources for <code>ltsp image</code> and as
+NFS root exports for the clients.</dd>
+<dt><strong>/srv/ltsp/images/<em>img_name</em>.img</strong></dt>
+<dd>Exported images (usually squashfs) are placed under the images directory and
+the clients can netboot from them.</dd>
+</dl>
+<p>Images can be specified as simple names like <code>ltsp image img_name</code>, in which
+case the aforementioned locations are searched, or as or full paths like
+<code>ltsp image ~/VMs/vm.img</code>.</p>
+<p>The supported image types result in the following three methods to use LTSP.
+You may use either one of the methods or even all of them at the same time.</p>
+<h2 id="chrootless">CHROOTLESS<a class="headerlink" href="#chrootless" title="Permanent link">&para;</a></h2>
+<p>Chrootless LTSP, previously called "ltsp-pnp", is the recommended way to
+maintain LTSP <strong>if</strong> its restrictions are acceptable.
+In this mode, the server operating system itself is exported into a squashfs
+file and used for netbooting all the clients. You, the sysadmin, would use
+the typical GUI tools to manage the server, like software centers or update
+managers. Then whenever necessary, you'd run:</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>/
+</code></pre></div>
+<p>This creates or updates /srv/ltsp/images/x86_64.img (the arch name comes from
+<code>uname -m</code>). Then, all the clients should be able to boot from x86_64.img
+and have a desktop environment identical to the server.</p>
+<p>The big advantage of the chrootless mode is simplicity: there are no virtual
+machines or chroots involved. You'd maintain the server like any "home
+desktop PC", and have all clients be exact replicas, which is as simple as it
+gets.</p>
+<p>The disadvantages are that the clients need to have the same architecture as
+the server (e.g. all x86_64), and that the server can't be a "full blown
+server" with LDAP and Apache and a lot of other services, without taking
+care to disable those services on the clients with the MASK_SYSTEM_SERVICES
+parameter of ltsp.conf. Note that MASK_SYSTEM_SERVICES already includes
+Apache and MySQL and a few other popular services that we don't want in
+LTSP clients, so it's not a problem if you install Apache on the LTSP server.</p>
+<p>If for some reason you prefer a different name to <code>uname -m</code>, you may create
+a symlink:</p>
+<div class="highlight"><pre><span></span><code>ln<span class="w"> </span>-s<span class="w"> </span>/<span class="w"> </span>~/amd64
+</code></pre></div>
+<p>...and run <code>ltsp image ~/amd64</code> instead.</p>
+<h2 id="vm-images">VM IMAGES<a class="headerlink" href="#vm-images" title="Permanent link">&para;</a></h2>
+<p>If the chrootless case doesn't fit you, you may use VirtualBox, virt-manager,
+KVM, VMWare and similar tools to maintain one or more template images for the
+clients. As an example, let's suppose you create a VM in VirtualBox and call it
+"debian". At the disk creation dialog, select "VMDK" type and "Fixed size",
+not "Dynamically allocated". Proceed with installing Debian on it.
+In the partitioning step, make sure that the whole operating system goes in the
+first partition, without extra partitions for /boot etc. BIOS/MBR is easier,
+while if you have to use GPT/UEFI, put the EFI partition second.
+When you're done, close VirtualBox and symlink the VM disk so that LTSP
+finds it more easily:</p>
+<div class="highlight"><pre><span></span><code>ln<span class="w"> </span>-rs<span class="w"> </span>~/VirtualBox<span class="se">\ </span>VMs/debian/debian-flat.vmdk<span class="w"> </span>/srv/ltsp/debian.img
+</code></pre></div>
+<p>To export this image to the clients, after the initial creation or after
+updates etc, you'd run:</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>debian
+</code></pre></div>
+<p>It's also possible to omit the symlink by running:</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>~/VirtualBox<span class="se">\ </span>VMs/debian/debian-flat.vmdk
+</code></pre></div>
+<p>...but then the image name shown in the iPXE boot menu would be
+"debian-flat", which isn't pretty.</p>
+<p>In summary, you may symlink raw VM disks in /srv/ltsp/img_name.img, and
+<code>ltsp image img_name</code> will allow LTSP clients to netboot from them.
+Please also see the DIRECT IMAGES section of ltsp-kernel(8) for an advanced
+method of allowing clients to netboot directly from a VM or .iso image without
+even running <code>ltsp image</code>, and the ADVANCED IMAGE SOURCES section of
+ltsp-ipxe(8) for extreme cases like telling the LTSP clients to boot from
+an .iso image inside a local disk partition!</p>
+<h2 id="chroots">CHROOTS<a class="headerlink" href="#chroots" title="Permanent link">&para;</a></h2>
+<p>Chroot directories in /srv/ltsp/img_name are properly supported as image
+sources by LTSP, but their creation and maintenance are left to external tools
+like debootstrap, lxc etc. The <code>ltsp-build-client</code> LTSPv5 tool no longer
+exists. LTSP users are invited to create appropriate documentation in the
+<a href="https://github.com/ltsp/ltsp/wiki/chroots">community wiki</a>.
+As a small example, you can use kvm to netboot a chroot and maintain it if
+you NFS-export /srv/ltsp/img_name in rw mode for your server IP, and then run</p>
+<div class="highlight"><pre><span></span><code>kvm<span class="w"> </span>-m<span class="w"> </span><span class="m">512</span><span class="w"> </span>-kernel<span class="w"> </span>img_name/vmlinuz<span class="w"> </span>-initrd<span class="w"> </span>img_name/initrd.img<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-append<span class="w"> </span><span class="s2">&quot;rw root=/dev/nfs nfsroot=192.168.67.1:/srv/ltsp/img_name&quot;</span>
+</code></pre></div>
+<h2 id="examples">EXAMPLES<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<p>Use the server installation as a template to generate a client image
+(chrootless, previously called ltsp-pnp):</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>/
+</code></pre></div>
+<p>Inform <code>ltsp image</code> that a chrootless installation uses separate /boot and
+/opt partitions:</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>/,,/boot,subdir<span class="o">=</span>boot,,/opt,subdir<span class="o">=</span>opt
+</code></pre></div>
+<p>Compress the /srv/ltsp/x86_64 chroot or the /srv/ltsp/x86_64.img virtual
+machine image, whichever exists of those two, into /srv/ltsp/images/x86_64.img,
+while disabling ionice:</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>--ionice<span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w"> </span>x86_64
+</code></pre></div>
+<p>Specify an absolute path to a virtual machine image:</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>/home/user/VirtualBox<span class="se">\ </span>VMs/x86_32/x86_32-flat.vmdk
+</code></pre></div>
+<p>Revert to the the previous version of the "chrootless" image:</p>
+<div class="highlight"><pre><span></span><code>ltsp<span class="w"> </span>image<span class="w"> </span>-r<span class="w"> </span>/
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2000-2023 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.instant"], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.78eede0e.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

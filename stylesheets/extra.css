@@ -1,0 +1,269 @@
+/* Minimal vscode compatibility */
+
+body.vscode-body {
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+}
+
+.vscode-body pre, .vscode-body pre code {
+  color: #333;
+  background-color: #eee;
+}
+
+/* Customize mkdocs-material */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #206592;
+  --md-accent-fg-color: #439bd6;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #6db1df;
+  --md-accent-fg-color: #96c7e8;
+}
+
+/* Icon compatibility with Firefox 52
+https://github.com/squidfunk/mkdocs-material/issues/3437#issuecomment-1008354954
+*/
+
+.md-nav__icon::after {
+  background-color: initial;
+  background-image: var(--md-nav-icon--next);
+  mask-image: none;
+}
+
+[data-md-color-scheme="slate"] .md-nav__icon::after {
+  filter: invert(100%);
+}
+
+.md-typeset :-moz-any(.tip, .hint, .important) > :-moz-any(.admonition-title, summary)::before {
+  background-color: initial;
+  background-image: var(--md-admonition-icon--tip);
+  filter: invert(100%) brightness(0.5) sepia(1) hue-rotate(100deg) saturate(5);
+  mask-image: none;
+}
+
+[data-md-color-scheme="slate"] .md-typeset :-moz-any(.tip, .hint, .important) > :-moz-any(.admonition-title, summary)::before {
+  filter: invert(100%) brightness(0.7) sepia(1) hue-rotate(100deg) saturate(5);
+}
+
+.md-typeset :-moz-any(.note) > :-moz-any(.admonition-title, summary)::before {
+  background-color: initial;
+  background-image: var(--md-admonition-icon--note);
+  filter: invert(100%) brightness(0.5) sepia(1) hue-rotate(180deg) saturate(5);
+  mask-image: none;
+}
+
+[data-md-color-scheme="slate"] .md-typeset :-moz-any(.note) > :-moz-any(.admonition-title, summary)::before {
+  filter: invert(100%) brightness(0.5) sepia(1) hue-rotate(180deg) saturate(5);
+}
+
+.md-typeset :-moz-any(.warning, .caution) > :-moz-any(.admonition-title, summary)::before {
+  background-color: initial;
+  background-image: var(--md-admonition-icon--warning);
+  filter: invert(100%) brightness(0.5) sepia(1) hue-rotate(-40deg) saturate(5);
+  mask-image: none;
+}
+
+[data-md-color-scheme="slate"] .md-typeset :-moz-any(.warning, .caution) > :-moz-any(.admonition-title, summary)::before {
+  filter: invert(100%) brightness(0.7) sepia(1) hue-rotate(-40deg) saturate(5);
+}
+
+.md-header {
+  background-color: #2573a7;
+}
+
+.md-source__facts {
+  display: none;
+}
+
+.md-typeset code .gp {
+  color: red;
+}
+
+.md-typeset img, .md-typeset svg, .vscode-body img {
+  vertical-align: middle;
+}
+
+.md-typeset .md-typeset__table {
+  display: flex;
+}
+
+.md-typeset .md-typeset__table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.md-typeset table:not([class]), table {
+  width: auto;
+  margin: 0 auto;
+}
+
+.md-typeset :is(ul, ol):not([hidden]) {
+  display: block;
+}
+
+/* Backport a few things to material 4.x */
+
+body {
+  --md-primary-fg-color: #206592;
+  --md-primary-bg-color: #ffffff;
+  --md-accent-fg-color: #439bd6;
+  --md-accent-bg-color: #ffffff;
+  --md-code-fg-color: #36464e;
+  --md-code-bg-color: #f5f5f5;
+  --md-code-hl-color: rgba(255, 255, 0, 0.5);
+  --md-code-hl-number-color: #d52a2a;
+  --md-code-hl-special-color: #db1457;
+  --md-code-hl-function-color: #a846b9;
+  --md-code-hl-constant-color: #6e59d9;
+  --md-code-hl-keyword-color: #3f6ec6;
+  --md-code-hl-string-color: #1c7d4d;
+  --md-code-hl-name-color: var(--md-code-fg-color);
+  --md-code-hl-operator-color: var(--md-default-fg-color--light);
+  --md-code-hl-punctuation-color: var(--md-default-fg-color--light);
+  --md-code-hl-comment-color: var(--md-default-fg-color--light);
+  --md-code-hl-generic-color: var(--md-default-fg-color--light);
+  --md-code-hl-variable-color: var(--md-default-fg-color--light);
+  --md-typeset-color: var(--md-default-fg-color);
+  --md-typeset-a-color: var(--md-primary-fg-color);
+  --md-typeset-mark-color: rgba(255, 255, 0, 0.5);
+  --md-typeset-del-color: hsla(6, 90%, 60%, 0.15);
+  --md-typeset-ins-color: rgba(11, 213, 112, 0.15);
+  --md-typeset-kbd-color: #fafafa;
+  --md-typeset-kbd-accent-color: #fff;
+  --md-typeset-kbd-border-color: #b8b8b8;
+  --md-typeset-table-color: rgba(0, 0, 0, 0.12);
+  --md-admonition-fg-color: var(--md-default-fg-color);
+  --md-admonition-bg-color: var(--md-default-bg-color);
+  --md-footer-fg-color: #fff;
+  --md-footer-fg-color--light: hsla(0, 0%, 100%, 0.7);
+  --md-footer-fg-color--lighter: hsla(0, 0%, 100%, 0.3);
+  --md-footer-bg-color: rgba(0, 0, 0, 0.87);
+  --md-footer-bg-color--dark: rgba(0, 0, 0, 0.32);
+}
+
+a.md-logo {
+  display: initial;
+  font-size: 1px;
+}
+
+.md-typeset pre {
+  margin-top: 0;
+}
+
+.highlight span.filename {
+  background-color: #eee;
+  border-bottom: .05rem solid var(--md-default-fg-color--lightest);
+  border-top-left-radius: .1rem;
+  border-top-right-radius: .1rem;
+  display: block;
+  font-size: .85em;
+  font-weight: 700;
+  margin-top: 1em;
+  padding: .6617647059em 1.1764705882em;
+  position: relative;
+}
+
+.md-button {
+  border: .1rem solid;
+  border-radius: .1rem;
+  color: var(--md-primary-fg-color);
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  padding: .625em 2em;
+  transition: color 125ms, background-color 125ms, border-color 125ms;
+}
+
+a.md-button:hover {
+  border-color: var(--md-primary-fg-color);
+  background-color: var(--md-accent-fg-color);
+  color: var(--md-accent-bg-color);
+}
+
+.md-button.md-button--primary {
+  background-color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
+  color: var(--md-accent-bg-color);
+}
+
+a.md-button--primary:hover {
+  background-color: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-bg-color);
+}
+
+/* Customize readthedocs */
+
+.rst-content div[class^="highlight"] pre {
+  padding: 0;
+}
+
+/* Our CSS rules for easier markdown */
+
+/* Limit images to 100% width while printing */
+
+img {
+  max-width: 100%;
+}
+
+/* Right align and shrink images that are links to png or jpg */
+a[href$=".png"]>img, a[href$=".jpg"]>img {
+  clear: both;
+  float: right;
+  width: 33%;
+  margin: 0 0 0.4rem 0.4rem;
+}
+
+img.glossary {
+  float: right;
+  width: 3em;
+}
+
+/* Test for home-made admonitions using blockquotes */
+blockquote em>strong {
+  display: block;
+}
+
+/* Styles to avoid dangling floating images */
+.clear, h2, h3 {
+  clear: both;
+}
+
+/* Menus and keyboard shortcuts */
+em>strong, strong>em, strong>code {
+  background-color: var(--md-typeset-kbd-color);
+  border: .05rem solid #00000020;
+  border-radius: .1rem;
+  color: var(--md-default-fg-color);
+  padding: 0.05rem .2rem;
+  font-size: .95em;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.md-typeset strong>code, strong>code {
+  box-shadow: 0 .1rem 0 .05rem var(--md-typeset-kbd-border-color), 0 .1rem 0 var(--md-typeset-kbd-border-color), 0 -.1rem .2rem var(--md-typeset-kbd-accent-color) inset;
+  padding: 0.05rem .2rem;
+}
+
+/* Test for markdown class selectors */
+.green {
+  background-color: green;
+  border: 1px solid lightgreen;
+}
+
+.center {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+/* Work around some weasyprint issues */
+@media print {
+  div.admonition, div.highlight {
+    clear: both
+  }
+}
